@@ -1,4 +1,5 @@
 extends MarginContainer
+class_name Card
 
 @onready var image: Sprite2D = $Image
 @onready var border: Sprite2D = $Border
@@ -39,7 +40,7 @@ func _ready():
 
 func set_border_image(type):
 	if(type == "normal"):
-		borderImage = str("res://Assets/CardAssets/Borders/FastBorder.png")
+		borderImage = str("res://Assets/CardAssets/Borders/NormalBorder.png")
 	if(type == "fast"):
 		borderImage = str("res://Assets/CardAssets/Borders/FastBorder.png")
 	if(type == "bait"):

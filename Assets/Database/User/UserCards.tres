@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://d2hm735fgu2f2"]
+
+[ext_resource type="Script" path="res://Assets/Database/User/UserCards.gd" id="1_r58np"]
+
+[resource]
+script = ExtResource("1_r58np")

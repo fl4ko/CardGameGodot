@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://boitpyn83meja"]
 
-[ext_resource type="Script" path="res://Assets/Scripts/card_base.gd" id="1_50iv2"]
+[ext_resource type="Script" path="res://Assets/Models/card.gd" id="1_50iv2"]
 [ext_resource type="Texture2D" uid="uid://cekwj03ohrjm2" path="res://Assets/CardAssets/Borders/NormalBorder.png" id="2_4q2m0"]
 [ext_resource type="Texture2D" uid="uid://croabbfqga8i0" path="res://Assets/CardAssets/Other/NameBackground.png" id="3_m6v2g"]
 [ext_resource type="Texture2D" uid="uid://deu2r0b280et7" path="res://Assets/CardAssets/Other/AttackBackground.png" id="4_tic4m"]

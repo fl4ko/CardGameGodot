@@ -1,0 +1,56 @@
+[gd_scene load_steps=3 format=3 uid="uid://bfsfypjw117jv"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/main_menu.gd" id="1_6gihu"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_erenw"]
+font_size = 36
+
+[node name="MainMenu" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 120
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 120
+theme_override_constants/margin_bottom = 80
+script = ExtResource("1_6gihu")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Start Game" type="Button" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+text = "Start Game"
+
+[node name="Open Packs" type="Button" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+text = "Open Packs"
+
+[node name="Change Deck" type="Button" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+text = "Change Deck"
+
+[node name="Open Packs2" type="Button" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+text = "card_base"
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Card Game"
+label_settings = SubResource("LabelSettings_erenw")
+horizontal_alignment = 1
+
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/Change Deck" to="." method="SwitchSceneDeck"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/Open Packs2" to="." method="SwitchScene_test"]
