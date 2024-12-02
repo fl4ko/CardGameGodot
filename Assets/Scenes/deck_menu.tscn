@@ -14,3 +14,10 @@ script = ExtResource("2_4h1fi")
 layout_mode = 2
 size_flags_horizontal = 4
 text = "klkl"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[connection signal="pressed" from="Button" to="." method="butt"]

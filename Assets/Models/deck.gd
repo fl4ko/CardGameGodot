@@ -1,8 +1,4 @@
 extends Node
 class_name Deck
 
-const card_model = preload("res://Assets/Models/card.gd")
-
-var UserCards = []
-
-	
+var UserDeck : userCardsResource = preload("res://Assets/Database/User/UserCardRes.tres")

@@ -18,6 +18,11 @@ var cardName = "Spy"
 @onready var cardType = cardInfo[4]
 @onready var borderImage
 
+@export var Name: String
+@export var Health: int
+@export var Attack: int
+@export var Cost: int
+
 
 func _ready():
 	print(cardImage)

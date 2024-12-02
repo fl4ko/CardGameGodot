@@ -1,10 +1,9 @@
 extends MarginContainer
 
-const deck_model = preload("res://Assets/Models/deck.gd")
+@onready var UserDeck = Deck.new()
 
-var UserDeck: Deck
-
+@onready var image: Sprite2D = $Sprite2D
 @onready var name_label: Label = $Label
 
 func _ready() -> void:
-	name_label.set_text(UserDeck.deckName)
+	name_label.set_text("grzechu");

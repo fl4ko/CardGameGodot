@@ -1,4 +1,4 @@
 extends Resource
-class_name userCardsResource
+class_name cardDatabaseResource
 
 @export var CardsStats: Dictionary
