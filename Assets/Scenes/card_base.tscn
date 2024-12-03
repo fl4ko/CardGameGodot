@@ -24,7 +24,7 @@ centered = false
 layout_mode = 2
 
 [node name="Top" type="MarginContainer" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 30)
+custom_minimum_size = Vector2(0, 280)
 layout_mode = 2
 
 [node name="HoriziontalTop" type="HBoxContainer" parent="VBoxContainer"]
@@ -55,7 +55,7 @@ layout_direction = 3
 layout_mode = 2
 
 [node name="Mid" type="MarginContainer" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 250)
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_vertical = 3
 

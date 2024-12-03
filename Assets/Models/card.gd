@@ -8,14 +8,15 @@ class_name Card
 @onready var cost_label: Label = $VBoxContainer/HoriziontalBot/Cost/CenterContainer/CostLabel
 @onready var health_label: Label = $VBoxContainer/HoriziontalBot/Health/CenterContainer/HealthLabel
 
-@onready var cardDatabase = preload("res://Assets/Database/CardDatabase.gd")
-@onready var cardDatabaseInstance = cardDatabase.new()
+@onready var cards: userCardsResource = preload("res://Assets/Database/CardDatabase.tres")
 
-var cardName = "Spy"
+var cardName = "PoorInfantryman"
 
-@onready var cardInfo = cardDatabaseInstance.DATA[cardDatabaseInstance.Cards.get(cardName)]
-@onready var cardImage = str("res://Assets/Database/Units/",cardInfo[0],"/",cardName,".png")
-@onready var cardType = cardInfo[4]
+# 0Name, 1Rarity, 2Type, 3Cost, 4HP, 5Attack, 6Image
+
+@onready var cardInfo = cards.CardsStats.get(cardName)
+@onready var cardImage = cardInfo[6]
+@onready var cardType = cardInfo[2]
 @onready var borderImage
 
 @export var Name: String
@@ -38,17 +39,17 @@ func _ready():
 	image.scale *= size / image.texture.get_size()
 	
 	# Setting card name, attack, cost and hp
-	attack_label.text = str(cardInfo[1])
-	health_label.text = str(cardInfo[2])
-	name_label.text = str(cardInfo[3])
-	cost_label.text = str(cardInfo[5])
+	attack_label.text = str(cardInfo[5])
+	health_label.text = str(cardInfo[4])
+	name_label.text = str(cardInfo[0])
+	cost_label.text = str(cardInfo[3])
 
 func set_border_image(type):
-	if(type == "normal"):
+	if(type == "Normal"):
 		borderImage = str("res://Assets/CardAssets/Borders/NormalBorder.png")
-	if(type == "fast"):
+	if(type == "Fast"):
 		borderImage = str("res://Assets/CardAssets/Borders/FastBorder.png")
-	if(type == "bait"):
+	if(type == "Bait"):
 		borderImage = str("res://Assets/CardAssets/Borders/BaitBorder.png")
 
 	

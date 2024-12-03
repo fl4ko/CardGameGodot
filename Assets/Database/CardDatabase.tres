@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="userCardsResource" load_steps=2 format=3 uid="uid://dj68n235fadom"]
+
+[ext_resource type="Script" path="res://Assets/Database/User/UserCards.gd" id="1_djhca"]
+
+[resource]
+script = ExtResource("1_djhca")
+CardsStats = {
+"PoorInfantryman": ["Poor Infantrynman", "Common", "Normal", 1, 5, 3, "res://Assets/Database/Units/Common/PoorInfantryman.png"]
+}
