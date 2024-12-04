@@ -17,6 +17,7 @@ func _ready() -> void:
 	for key in userDeckResource.CardsStats.keys():
 		var cardInfo = userDeckResource.CardsStats[key]
 		cardNamesList.add_item(cardInfo[0])
+	image.hide()
 
 func cardChosen(index: int) -> void:
 	var cardKey := cardNamesList.get_item_text(index) as String
