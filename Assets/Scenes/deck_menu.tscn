@@ -1,23 +1,249 @@
-[gd_scene load_steps=2 format=3 uid="uid://88ytat0kncpg"]
+[gd_scene load_steps=7 format=3 uid="uid://88ytat0kncpg"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/deck_menu.gd" id="2_4h1fi"]
+[ext_resource type="Texture2D" uid="uid://croabbfqga8i0" path="res://Assets/CardAssets/Other/NameBackground.png" id="2_xrymn"]
+[ext_resource type="Texture2D" uid="uid://deu2r0b280et7" path="res://Assets/CardAssets/Other/AttackBackground.png" id="3_2ljgw"]
+[ext_resource type="Texture2D" uid="uid://du40f6n0ap3gg" path="res://Assets/CardAssets/Other/CostBackground.png" id="4_x182r"]
+[ext_resource type="Texture2D" uid="uid://6lr5iavx650g" path="res://Assets/CardAssets/Other/HealthBackground.png" id="5_8htkf"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_lukdg"]
+font_size = 36
 
 [node name="MarginContainer" type="MarginContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -24.0
+offset_bottom = 25.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 120
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 120
+theme_override_constants/margin_bottom = 80
 script = ExtResource("2_4h1fi")
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "klkl"
-
-[node name="Button" type="Button" parent="."]
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Label" type="Label" parent="VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Your Deck"
+label_settings = SubResource("LabelSettings_lukdg")
 
-[connection signal="pressed" from="Button" to="." method="butt"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 42
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+horizontal_scroll_mode = 0
+
+[node name="CardNamesList" type="ItemList" parent="VBoxContainer2/HBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+same_column_width = true
+fixed_column_width = 20
+
+[node name="Gap" type="MarginContainer" parent="VBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CardContainer" type="HBoxContainer" parent="VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Image" type="TextureRect" parent="VBoxContainer2/HBoxContainer/CardContainer"]
+custom_minimum_size = Vector2(280, 100)
+layout_mode = 2
+expand_mode = 1
+
+[node name="Border" type="TextureRect" parent="VBoxContainer2/HBoxContainer/CardContainer/Image"]
+custom_minimum_size = Vector2(280, 100)
+layout_mode = 0
+offset_right = 280.0
+offset_bottom = 437.0
+expand_mode = 1
+
+[node name="AttackRect" type="NinePatchRect" parent="VBoxContainer2/HBoxContainer/CardContainer/Image/Border"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.2875
+anchor_top = 0.800915
+anchor_right = 0.4125
+anchor_bottom = 0.885584
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_2ljgw")
+metadata/_edit_use_anchors_ = true
+
+[node name="AttackLabel" type="Label" parent="VBoxContainer2/HBoxContainer/CardContainer/Image/Border/AttackRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -17.5
+offset_top = -11.5
+offset_right = 17.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "5"
+horizontal_alignment = 1
+
+[node name="CostRect" type="NinePatchRect" parent="VBoxContainer2/HBoxContainer/CardContainer/Image/Border"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.4375
+anchor_top = 0.800915
+anchor_right = 0.5625
+anchor_bottom = 0.885584
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_x182r")
+metadata/_edit_use_anchors_ = true
+
+[node name="CostLabel" type="Label" parent="VBoxContainer2/HBoxContainer/CardContainer/Image/Border/CostRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.0
+offset_top = -11.5
+offset_right = 5.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "2"
+horizontal_alignment = 1
+
+[node name="HealthRect" type="NinePatchRect" parent="VBoxContainer2/HBoxContainer/CardContainer/Image/Border"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5875
+anchor_top = 0.800915
+anchor_right = 0.7125
+anchor_bottom = 0.885584
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_8htkf")
+metadata/_edit_use_anchors_ = true
+
+[node name="HealthLabel" type="Label" parent="VBoxContainer2/HBoxContainer/CardContainer/Image/Border/HealthRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.0
+offset_top = -11.5
+offset_right = 5.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "6"
+horizontal_alignment = 1
+
+[node name="NameRect" type="NinePatchRect" parent="VBoxContainer2/HBoxContainer/CardContainer/Image/Border"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.142857
+anchor_top = 0.686499
+anchor_right = 0.857143
+anchor_bottom = 0.755149
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_xrymn")
+metadata/_edit_use_anchors_ = true
+
+[node name="NameLabel" type="Label" parent="VBoxContainer2/HBoxContainer/CardContainer/Image/Border/NameRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -49.0
+offset_top = -11.5
+offset_right = 49.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Nazwa Karty"
+horizontal_alignment = 1
+
+[node name="VBoxContainer2" type="Control" parent="VBoxContainer2/HBoxContainer/CardContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Top" type="MarginContainer" parent="VBoxContainer2/HBoxContainer/CardContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 280)
+layout_mode = 2
+offset_right = 166.0
+offset_bottom = 280.0
+size_flags_vertical = 3
+
+[node name="NameContainer" type="HBoxContainer" parent="VBoxContainer2/HBoxContainer/CardContainer/VBoxContainer2"]
+layout_mode = 2
+offset_top = 284.0
+offset_right = 166.0
+offset_bottom = 321.0
+size_flags_vertical = 3
+
+[node name="LeftGap" type="MarginContainer" parent="VBoxContainer2/HBoxContainer/CardContainer/VBoxContainer2/NameContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+
+[node name="RightGap" type="MarginContainer" parent="VBoxContainer2/HBoxContainer/CardContainer/VBoxContainer2/NameContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_direction = 3
+layout_mode = 2
+
+[node name="Mid" type="MarginContainer" parent="VBoxContainer2/HBoxContainer/CardContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+offset_top = 325.0
+offset_right = 166.0
+offset_bottom = 362.0
+size_flags_vertical = 3
+
+[node name="StatsContainer" type="HBoxContainer" parent="VBoxContainer2/HBoxContainer/CardContainer/VBoxContainer2"]
+layout_mode = 2
+offset_top = 366.0
+offset_right = 166.0
+offset_bottom = 403.0
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="LeftGap" type="MarginContainer" parent="VBoxContainer2/HBoxContainer/CardContainer/VBoxContainer2/StatsContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+
+[node name="RightGap" type="MarginContainer" parent="VBoxContainer2/HBoxContainer/CardContainer/VBoxContainer2/StatsContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_direction = 3
+layout_mode = 2
+
+[node name="Bot" type="MarginContainer" parent="VBoxContainer2/HBoxContainer/CardContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+offset_top = 407.0
+offset_right = 166.0
+offset_bottom = 437.0
+
+[connection signal="item_activated" from="VBoxContainer2/HBoxContainer/ScrollContainer/CardNamesList" to="." method="cardChosen"]

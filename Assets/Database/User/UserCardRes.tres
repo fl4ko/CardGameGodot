@@ -5,5 +5,5 @@
 [resource]
 script = ExtResource("1_yp661")
 CardsStats = {
-"PoorInfantryman": ["Poor Infantrynman", "Common", "Normal", 1, 5, 3, "res://Assets/Database/Units/Common/PoorInfantryman.png"]
+"PoorInfantryman": ["Poor Infantryman", "Common", "Normal", 1, 5, 3, "res://Assets/Database/Units/Common/PoorInfantryman.png"]
 }
