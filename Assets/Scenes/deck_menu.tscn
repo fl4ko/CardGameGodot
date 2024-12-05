@@ -44,24 +44,53 @@ size_flags_vertical = 3
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer2/HBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
-size_flags_horizontal = 3
 horizontal_scroll_mode = 0
 
 [node name="CardNamesList" type="ItemList" parent="VBoxContainer2/HBoxContainer/ScrollContainer"]
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
-size_flags_horizontal = 3
 size_flags_vertical = 3
-same_column_width = true
-fixed_column_width = 20
 
-[node name="Gap" type="MarginContainer" parent="VBoxContainer2/HBoxContainer"]
+[node name="GridContainer" type="VBoxContainer" parent="VBoxContainer2/HBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 6
 
-[node name="CardContainer" type="HBoxContainer" parent="VBoxContainer2/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2/HBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="UserCardMax" type="Label" parent="VBoxContainer2/HBoxContainer/GridContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 0
+horizontal_alignment = 1
+
+[node name="UserCardDeck" type="Label" parent="VBoxContainer2/HBoxContainer/GridContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+horizontal_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer2/HBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Add" type="Button" parent="VBoxContainer2/HBoxContainer/GridContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
+text = "Add"
+
+[node name="Remove" type="Button" parent="VBoxContainer2/HBoxContainer/GridContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 0
+text = "Remove"
+
+[node name="CardContainer" type="HBoxContainer" parent="VBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(0, 450)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
 
 [node name="Image" type="TextureRect" parent="VBoxContainer2/HBoxContainer/CardContainer"]
 custom_minimum_size = Vector2(280, 100)
@@ -71,9 +100,10 @@ expand_mode = 1
 [node name="Border" type="TextureRect" parent="VBoxContainer2/HBoxContainer/CardContainer/Image"]
 custom_minimum_size = Vector2(280, 100)
 layout_mode = 0
-offset_right = 280.0
-offset_bottom = 437.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 expand_mode = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="AttackRect" type="NinePatchRect" parent="VBoxContainer2/HBoxContainer/CardContainer/Image/Border"]
 layout_mode = 1
@@ -94,9 +124,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -17.5
+offset_left = -5.0
 offset_top = -11.5
-offset_right = 17.5
+offset_right = 5.0
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
@@ -187,63 +217,6 @@ grow_vertical = 2
 text = "Nazwa Karty"
 horizontal_alignment = 1
 
-[node name="VBoxContainer2" type="Control" parent="VBoxContainer2/HBoxContainer/CardContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Top" type="MarginContainer" parent="VBoxContainer2/HBoxContainer/CardContainer/VBoxContainer2"]
-custom_minimum_size = Vector2(0, 280)
-layout_mode = 2
-offset_right = 166.0
-offset_bottom = 280.0
-size_flags_vertical = 3
-
-[node name="NameContainer" type="HBoxContainer" parent="VBoxContainer2/HBoxContainer/CardContainer/VBoxContainer2"]
-layout_mode = 2
-offset_top = 284.0
-offset_right = 166.0
-offset_bottom = 321.0
-size_flags_vertical = 3
-
-[node name="LeftGap" type="MarginContainer" parent="VBoxContainer2/HBoxContainer/CardContainer/VBoxContainer2/NameContainer"]
-custom_minimum_size = Vector2(30, 0)
-layout_mode = 2
-
-[node name="RightGap" type="MarginContainer" parent="VBoxContainer2/HBoxContainer/CardContainer/VBoxContainer2/NameContainer"]
-custom_minimum_size = Vector2(30, 0)
-layout_direction = 3
-layout_mode = 2
-
-[node name="Mid" type="MarginContainer" parent="VBoxContainer2/HBoxContainer/CardContainer/VBoxContainer2"]
-custom_minimum_size = Vector2(0, 30)
-layout_mode = 2
-offset_top = 325.0
-offset_right = 166.0
-offset_bottom = 362.0
-size_flags_vertical = 3
-
-[node name="StatsContainer" type="HBoxContainer" parent="VBoxContainer2/HBoxContainer/CardContainer/VBoxContainer2"]
-layout_mode = 2
-offset_top = 366.0
-offset_right = 166.0
-offset_bottom = 403.0
-size_flags_vertical = 3
-theme_override_constants/separation = 0
-
-[node name="LeftGap" type="MarginContainer" parent="VBoxContainer2/HBoxContainer/CardContainer/VBoxContainer2/StatsContainer"]
-custom_minimum_size = Vector2(30, 0)
-layout_mode = 2
-
-[node name="RightGap" type="MarginContainer" parent="VBoxContainer2/HBoxContainer/CardContainer/VBoxContainer2/StatsContainer"]
-custom_minimum_size = Vector2(30, 0)
-layout_direction = 3
-layout_mode = 2
-
-[node name="Bot" type="MarginContainer" parent="VBoxContainer2/HBoxContainer/CardContainer/VBoxContainer2"]
-custom_minimum_size = Vector2(0, 30)
-layout_mode = 2
-offset_top = 407.0
-offset_right = 166.0
-offset_bottom = 437.0
-
-[connection signal="item_activated" from="VBoxContainer2/HBoxContainer/ScrollContainer/CardNamesList" to="." method="cardChosen"]
+[connection signal="item_selected" from="VBoxContainer2/HBoxContainer/ScrollContainer/CardNamesList" to="." method="cardChosen"]
+[connection signal="pressed" from="VBoxContainer2/HBoxContainer/GridContainer/HBoxContainer2/Add" to="." method="cardAdded"]
+[connection signal="pressed" from="VBoxContainer2/HBoxContainer/GridContainer/HBoxContainer2/Remove" to="." method="cardRemoved"]
