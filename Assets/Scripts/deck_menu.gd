@@ -69,3 +69,6 @@ func set_border_image(type) -> String:
 	elif(type == "Bait"):
 		return  str("res://Assets/CardAssets/Borders/BaitBorder.png")
 	return "Damn"
+	
+func SwitchSceneMainMenu() -> void:
+	get_tree().change_scene_to_file("res://Assets/Scenes/main_menu.tscn")

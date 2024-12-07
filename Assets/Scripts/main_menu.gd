@@ -6,3 +6,6 @@ func SwitchScene_test() -> void:
 
 func SwitchSceneDeck() -> void:
 	get_tree().change_scene_to_file("res://Assets/Scenes/deck_menu.tscn")
+
+func SwitchScenePack() -> void:
+	get_tree().change_scene_to_file("res://Assets/Scenes/pack_menu.tscn")

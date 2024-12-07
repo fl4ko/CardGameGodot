@@ -13,8 +13,8 @@ font_size = 36
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -24.0
-offset_bottom = 25.0
+offset_top = -46.0
+offset_bottom = 47.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 120
@@ -26,7 +26,7 @@ script = ExtResource("2_4h1fi")
 [node name="VBoxContainer2" type="VBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer2"]
+[node name="DeckMenuLabel" type="Label" parent="VBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -37,24 +37,33 @@ label_settings = SubResource("LabelSettings_lukdg")
 layout_mode = 2
 theme_override_constants/margin_bottom = 42
 
+[node name="MainMenuButton" type="Button" parent="VBoxContainer2/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+text = "Return to Main Menu"
+
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 3
 
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer2/HBoxContainer"]
-custom_minimum_size = Vector2(200, 0)
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
+size_flags_horizontal = 3
 horizontal_scroll_mode = 0
 
 [node name="CardNamesList" type="ItemList" parent="VBoxContainer2/HBoxContainer/ScrollContainer"]
-custom_minimum_size = Vector2(300, 0)
+custom_minimum_size = Vector2(300, 300)
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="GridContainer" type="VBoxContainer" parent="VBoxContainer2/HBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 6
+size_flags_vertical = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2/HBoxContainer/GridContainer"]
 layout_mode = 2
@@ -87,14 +96,14 @@ size_flags_vertical = 0
 text = "Remove"
 
 [node name="CardContainer" type="HBoxContainer" parent="VBoxContainer2/HBoxContainer"]
-custom_minimum_size = Vector2(0, 450)
+custom_minimum_size = Vector2(300, 450)
 layout_mode = 2
-size_flags_horizontal = 10
-size_flags_vertical = 4
+size_flags_horizontal = 3
 
 [node name="Image" type="TextureRect" parent="VBoxContainer2/HBoxContainer/CardContainer"]
 custom_minimum_size = Vector2(280, 100)
 layout_mode = 2
+size_flags_horizontal = 3
 expand_mode = 1
 
 [node name="Border" type="TextureRect" parent="VBoxContainer2/HBoxContainer/CardContainer/Image"]
@@ -217,6 +226,7 @@ grow_vertical = 2
 text = "Nazwa Karty"
 horizontal_alignment = 1
 
+[connection signal="pressed" from="VBoxContainer2/MarginContainer/MainMenuButton" to="." method="SwitchSceneMainMenu"]
 [connection signal="item_selected" from="VBoxContainer2/HBoxContainer/ScrollContainer/CardNamesList" to="." method="cardChosen"]
 [connection signal="pressed" from="VBoxContainer2/HBoxContainer/GridContainer/HBoxContainer2/Add" to="." method="cardAdded"]
 [connection signal="pressed" from="VBoxContainer2/HBoxContainer/GridContainer/HBoxContainer2/Remove" to="." method="cardRemoved"]

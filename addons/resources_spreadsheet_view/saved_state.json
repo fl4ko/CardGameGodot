@@ -1,12 +1,20 @@
 {
   "hidden_columns": {
+    "res://Assets/Database/": {
+      "resource_local_to_scene": true,
+      "resource_name": true
+    },
+    "res://Assets/Database/Pack/": {
+      "resource_local_to_scene": true,
+      "resource_name": true
+    },
     "res://Assets/Database/User/": {
       "resource_local_to_scene": true,
       "resource_name": true
     }
   },
   "recent_paths": [
-    "res://Assets/Database/User/"
+    "res://Assets/Database/"
   ],
   "table_functions": {
     "filter": [
