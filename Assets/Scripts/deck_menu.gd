@@ -2,16 +2,10 @@ extends MarginContainer
 
 @onready var userDeckResource : userCardsResource = preload("res://Assets/Database/User/UserCardRes.tres")
 
-@onready var image: TextureRect = $VBoxContainer2/HBoxContainer/CardContainer/Image
-@onready var border: TextureRect = $VBoxContainer2/HBoxContainer/CardContainer/Image/Border
-@onready var cardName: Label = $VBoxContainer2/HBoxContainer/CardContainer/Image/Border/NameRect/NameLabel
-@onready var attack: Label = $VBoxContainer2/HBoxContainer/CardContainer/Image/Border/AttackRect/AttackLabel
-@onready var cost: Label = $VBoxContainer2/HBoxContainer/CardContainer/Image/Border/CostRect/CostLabel
-@onready var health: Label = $VBoxContainer2/HBoxContainer/CardContainer/Image/Border/HealthRect/HealthLabel
 @onready var userCardMax: Label = $VBoxContainer2/HBoxContainer/GridContainer/HBoxContainer/UserCardMax
 @onready var userCardDeck: Label = $VBoxContainer2/HBoxContainer/GridContainer/HBoxContainer/UserCardDeck
 @onready var cardNamesList : ItemList = $VBoxContainer2/HBoxContainer/ScrollContainer/CardNamesList
-@onready var cardCointainer : HBoxContainer = $VBoxContainer2/HBoxContainer/CardContainer
+@onready var cardBase: Card = $VBoxContainer2/HBoxContainer/CardBase
 @onready var add : Button = $VBoxContainer2/HBoxContainer/GridContainer/HBoxContainer2/Add
 @onready var remove : Button = $VBoxContainer2/HBoxContainer/GridContainer/HBoxContainer2/Remove
 
@@ -24,7 +18,7 @@ func _ready() -> void:
 	for key in userDeckResource.CardsStats.keys():
 		cardInfo = userDeckResource.CardsStats[key]
 		cardNamesList.add_item(cardInfo[0])
-	image.hide()
+	cardBase.image.hide()
 	add.hide()
 	remove.hide()
 
@@ -33,16 +27,17 @@ func cardChosen(index: int) -> void:
 	cardKey = cardKey.replace(" ","")
 	cardKey = cardKey.replace("-","")
 	cardInfo = userDeckResource.CardsStats[cardKey]
-	image.texture = load(cardInfo[6])
+	cardBase.cardName = cardInfo[0]
+	cardBase.image.texture = load(cardInfo[6])
 	var borderImage = set_border_image(cardInfo[2])
-	border.texture = load(borderImage)
-	image.show()
+	cardBase.border.texture = load(borderImage)
+	cardBase.image.show()
 	add.show()
 	remove.show()
-	attack.text = str(cardInfo[5])
-	cost.text = str(cardInfo[3])
-	health.text = str(cardInfo[4])
-	cardName.text = cardInfo[0]
+	cardBase.attack_label.text = str(cardInfo[5])
+	cardBase.cost_label.text = str(cardInfo[3])
+	cardBase.health_label.text = str(cardInfo[4])
+	cardBase.name_label.text = cardInfo[0]
 	userCardMax.text = "Avaliable Cards: " + str(cardInfo[7])
 	userCardDeck.text = "In Deck: " + str(cardInfo[8])
 	

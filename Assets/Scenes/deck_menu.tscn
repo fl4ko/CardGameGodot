@@ -1,10 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://88ytat0kncpg"]
+[gd_scene load_steps=4 format=3 uid="uid://88ytat0kncpg"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/deck_menu.gd" id="2_4h1fi"]
-[ext_resource type="Texture2D" uid="uid://croabbfqga8i0" path="res://Assets/CardAssets/Other/NameBackground.png" id="2_xrymn"]
-[ext_resource type="Texture2D" uid="uid://deu2r0b280et7" path="res://Assets/CardAssets/Other/AttackBackground.png" id="3_2ljgw"]
-[ext_resource type="Texture2D" uid="uid://du40f6n0ap3gg" path="res://Assets/CardAssets/Other/CostBackground.png" id="4_x182r"]
-[ext_resource type="Texture2D" uid="uid://6lr5iavx650g" path="res://Assets/CardAssets/Other/HealthBackground.png" id="5_8htkf"]
+[ext_resource type="PackedScene" uid="uid://bbi3fcfafn7y2" path="res://Assets/Scenes/card_base.tscn" id="2_nmhvi"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_lukdg"]
 font_size = 36
@@ -95,136 +92,8 @@ size_flags_horizontal = 10
 size_flags_vertical = 0
 text = "Remove"
 
-[node name="CardContainer" type="HBoxContainer" parent="VBoxContainer2/HBoxContainer"]
-custom_minimum_size = Vector2(300, 450)
+[node name="CardBase" parent="VBoxContainer2/HBoxContainer" instance=ExtResource("2_nmhvi")]
 layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Image" type="TextureRect" parent="VBoxContainer2/HBoxContainer/CardContainer"]
-custom_minimum_size = Vector2(280, 100)
-layout_mode = 2
-size_flags_horizontal = 3
-expand_mode = 1
-
-[node name="Border" type="TextureRect" parent="VBoxContainer2/HBoxContainer/CardContainer/Image"]
-custom_minimum_size = Vector2(280, 100)
-layout_mode = 0
-anchor_right = 1.0
-anchor_bottom = 1.0
-expand_mode = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="AttackRect" type="NinePatchRect" parent="VBoxContainer2/HBoxContainer/CardContainer/Image/Border"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.2875
-anchor_top = 0.800915
-anchor_right = 0.4125
-anchor_bottom = 0.885584
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_2ljgw")
-metadata/_edit_use_anchors_ = true
-
-[node name="AttackLabel" type="Label" parent="VBoxContainer2/HBoxContainer/CardContainer/Image/Border/AttackRect"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -5.0
-offset_top = -11.5
-offset_right = 5.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "5"
-horizontal_alignment = 1
-
-[node name="CostRect" type="NinePatchRect" parent="VBoxContainer2/HBoxContainer/CardContainer/Image/Border"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.4375
-anchor_top = 0.800915
-anchor_right = 0.5625
-anchor_bottom = 0.885584
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("4_x182r")
-metadata/_edit_use_anchors_ = true
-
-[node name="CostLabel" type="Label" parent="VBoxContainer2/HBoxContainer/CardContainer/Image/Border/CostRect"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -5.0
-offset_top = -11.5
-offset_right = 5.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "2"
-horizontal_alignment = 1
-
-[node name="HealthRect" type="NinePatchRect" parent="VBoxContainer2/HBoxContainer/CardContainer/Image/Border"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5875
-anchor_top = 0.800915
-anchor_right = 0.7125
-anchor_bottom = 0.885584
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("5_8htkf")
-metadata/_edit_use_anchors_ = true
-
-[node name="HealthLabel" type="Label" parent="VBoxContainer2/HBoxContainer/CardContainer/Image/Border/HealthRect"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -5.0
-offset_top = -11.5
-offset_right = 5.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "6"
-horizontal_alignment = 1
-
-[node name="NameRect" type="NinePatchRect" parent="VBoxContainer2/HBoxContainer/CardContainer/Image/Border"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.142857
-anchor_top = 0.686499
-anchor_right = 0.857143
-anchor_bottom = 0.755149
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_xrymn")
-metadata/_edit_use_anchors_ = true
-
-[node name="NameLabel" type="Label" parent="VBoxContainer2/HBoxContainer/CardContainer/Image/Border/NameRect"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -49.0
-offset_top = -11.5
-offset_right = 49.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "Nazwa Karty"
-horizontal_alignment = 1
 
 [connection signal="pressed" from="VBoxContainer2/MarginContainer/MainMenuButton" to="." method="SwitchSceneMainMenu"]
 [connection signal="item_selected" from="VBoxContainer2/HBoxContainer/ScrollContainer/CardNamesList" to="." method="cardChosen"]
