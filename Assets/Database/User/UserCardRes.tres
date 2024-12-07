@@ -5,5 +5,16 @@
 [resource]
 script = ExtResource("1_yp661")
 CardsStats = {
-"PoorInfantryman": ["Poor Infantrynman", "Common", "Normal", 1, 5, 3, "res://Assets/Database/Units/Common/PoorInfantryman.png"]
+"Acolyte": ["Acolyte", "Common", "Fast", 2, 1, 6, "res://Assets/Database/Units/Common/Acolyte.png", 3, 0],
+"Bastion": ["Bastion", "Uncommon", "Bait", 2, 7, 3, "res://Assets/Database/Units/Uncommon/Bastion.png", 1, 1],
+"Crossbowman": ["Crossbow-man", "Common", "Normal", 1, 3, 5, "res://Assets/Database/Units/Common/Crossbowman.png", 2, 1],
+"Duelist": ["Duelist", "Uncommon", "Fast", 2, 3, 6, "res://Assets/Database/Units/Uncommon/Duelist.jpg", 1, 0],
+"Noble": ["Noble", "Uncommon", "Fast", 2, 2, 7, "res://Assets/Database/Units/Uncommon/Noble.jpg", 1, 0],
+"PoorInfantryman": ["Poor Infantryman", "Common", "Normal", 1, 5, 3, "res://Assets/Database/Units/Common/PoorInfantryman.png", 3, 1],
+"Ranger": ["Ranger", "Common", "Fast", 3, 4, 6, "res://Assets/Database/Units/Common/Ranger.png", 1, 0],
+"Shieldbearer": ["Shieldbearer", "Common", "Bait", 3, 7, 2, "res://Assets/Database/Units/Common/Shieldbearer.png", 1, 1],
+"Spearman": ["Spearman", "Common", "Normal", 2, 5, 5, "res://Assets/Database/Units/Common/Spearman.png", 1, 0],
+"Spy": ["Spy", "Common", "Fast", 1, 5, 3, "res://Assets/Database/Units/Common/Spy.png", 2, 1],
+"Treeman": ["Treeman", "Uncommon", "Bait", 3, 8, 3, "res://Assets/Database/Units/Uncommon/Treeman.png", 1, 0],
+"WanderingWarrior": ["Wandering Warrior", "Uncommon", "Normal", 2, 7, 5, "res://Assets/Database/Units/Uncommon/WanderingWarrior.jpg", 2, 0]
 }

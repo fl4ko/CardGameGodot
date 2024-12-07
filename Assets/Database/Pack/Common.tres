@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="packsResource" load_steps=2 format=3 uid="uid://byxujlkfvw5"]
+
+[ext_resource type="Script" path="res://Assets/Database/Pack/Packs.gd" id="1_8uc5s"]
+
+[resource]
+script = ExtResource("1_8uc5s")
+PackName = "Common"
+PackChance = 60
+PackCards = ["PoorInfantryman", "Crossbowman", "Jester", "Spy", "Spearman", "Shieldbearer", "Acolyte", "Ranger"]

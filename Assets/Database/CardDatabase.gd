@@ -1,5 +1,7 @@
 enum Cards { PoorInfantryman, Crossbowman, Jester, Spy, Spearman, Shieldbearer, Acolyte, Ranger }
 
+#hp,attack,koszt
+
 const DATA = {
 	Cards.PoorInfantryman :
 		["Common", 5, 3, "Poor Infantryman", "normal", 1, ""],

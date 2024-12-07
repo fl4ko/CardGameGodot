@@ -52,5 +52,6 @@ text = "Card Game"
 label_settings = SubResource("LabelSettings_erenw")
 horizontal_alignment = 1
 
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/Open Packs" to="." method="SwitchScenePack"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/Change Deck" to="." method="SwitchSceneDeck"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/Open Packs2" to="." method="SwitchScene_test"]
