@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://cmh7ggwaxfr50"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/game_screen.gd" id="1_jttc6"]
+[ext_resource type="Texture2D" uid="uid://c7yb71x7142ta" path="res://Assets/CardAssets/Background/background.jpg" id="2_whpc3"]
+[ext_resource type="Texture2D" uid="uid://d2f1n8ue5vyhp" path="res://Assets/CardAssets/cardBack.jpg" id="3_qihbg"]
+[ext_resource type="Texture2D" uid="uid://dww7u83m237se" path="res://Assets/CardAssets/cardBackDisabled.png" id="4_gjfma"]
+[ext_resource type="Script" path="res://Assets/Scripts/hand_draw.gd" id="5_stire"]
+
+[node name="GameScreen" type="Node2D"]
+script = ExtResource("1_jttc6")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(0.4479, 0.45)
+texture = ExtResource("2_whpc3")
+
+[node name="Cards" type="Node" parent="."]
+
+[node name="Deck" type="Node" parent="."]
+
+[node name="HandDraw" type="TextureButton" parent="Deck"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 855.0
+offset_top = 366.0
+offset_right = 303.0
+offset_bottom = 553.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("3_qihbg")
+texture_pressed = ExtResource("3_qihbg")
+texture_hover = ExtResource("3_qihbg")
+texture_disabled = ExtResource("4_gjfma")
+script = ExtResource("5_stire")

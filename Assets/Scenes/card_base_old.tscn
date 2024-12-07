@@ -1,0 +1,121 @@
+[gd_scene load_steps=7 format=3 uid="uid://boitpyn83meja"]
+
+[ext_resource type="Script" path="res://Assets/Models/card.gd" id="1_50iv2"]
+[ext_resource type="Texture2D" uid="uid://cekwj03ohrjm2" path="res://Assets/CardAssets/Borders/NormalBorder.png" id="2_4q2m0"]
+[ext_resource type="Texture2D" uid="uid://croabbfqga8i0" path="res://Assets/CardAssets/Other/NameBackground.png" id="3_m6v2g"]
+[ext_resource type="Texture2D" uid="uid://deu2r0b280et7" path="res://Assets/CardAssets/Other/AttackBackground.png" id="4_tic4m"]
+[ext_resource type="Texture2D" uid="uid://du40f6n0ap3gg" path="res://Assets/CardAssets/Other/CostBackground.png" id="5_hjwh3"]
+[ext_resource type="Texture2D" uid="uid://6lr5iavx650g" path="res://Assets/CardAssets/Other/HealthBackground.png" id="6_bdrre"]
+
+[node name="CardBase" type="MarginContainer"]
+offset_right = 250.0
+offset_bottom = 350.0
+pivot_offset = Vector2(125, 175)
+script = ExtResource("1_50iv2")
+
+[node name="Image" type="Sprite2D" parent="."]
+centered = false
+
+[node name="Border" type="Sprite2D" parent="."]
+texture = ExtResource("2_4q2m0")
+centered = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Top" type="MarginContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 280)
+layout_mode = 2
+
+[node name="HoriziontalTop" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="LeftGap" type="MarginContainer" parent="VBoxContainer/HoriziontalTop"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+
+[node name="Name" type="MarginContainer" parent="VBoxContainer/HoriziontalTop"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NinePatchRect" type="NinePatchRect" parent="VBoxContainer/HoriziontalTop/Name"]
+layout_mode = 2
+texture = ExtResource("3_m6v2g")
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/HoriziontalTop/Name"]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="VBoxContainer/HoriziontalTop/Name/CenterContainer"]
+layout_mode = 2
+text = "Nazwa Karty"
+
+[node name="RightGap" type="MarginContainer" parent="VBoxContainer/HoriziontalTop"]
+custom_minimum_size = Vector2(30, 0)
+layout_direction = 3
+layout_mode = 2
+
+[node name="Mid" type="MarginContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HoriziontalBot" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="LeftGap" type="MarginContainer" parent="VBoxContainer/HoriziontalBot"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+
+[node name="Attack" type="MarginContainer" parent="VBoxContainer/HoriziontalBot"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NinePatchRect" type="NinePatchRect" parent="VBoxContainer/HoriziontalBot/Attack"]
+layout_mode = 2
+texture = ExtResource("4_tic4m")
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/HoriziontalBot/Attack"]
+layout_mode = 2
+
+[node name="AttackLabel" type="Label" parent="VBoxContainer/HoriziontalBot/Attack/CenterContainer"]
+layout_mode = 2
+text = "5"
+
+[node name="Cost" type="MarginContainer" parent="VBoxContainer/HoriziontalBot"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NinePatchRect" type="NinePatchRect" parent="VBoxContainer/HoriziontalBot/Cost"]
+layout_mode = 2
+texture = ExtResource("5_hjwh3")
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/HoriziontalBot/Cost"]
+layout_mode = 2
+
+[node name="CostLabel" type="Label" parent="VBoxContainer/HoriziontalBot/Cost/CenterContainer"]
+layout_mode = 2
+text = "2"
+
+[node name="Health" type="MarginContainer" parent="VBoxContainer/HoriziontalBot"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NinePatchRect" type="NinePatchRect" parent="VBoxContainer/HoriziontalBot/Health"]
+layout_mode = 2
+texture = ExtResource("6_bdrre")
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/HoriziontalBot/Health"]
+layout_mode = 2
+
+[node name="HealthLabel" type="Label" parent="VBoxContainer/HoriziontalBot/Health/CenterContainer"]
+layout_mode = 2
+text = "6"
+
+[node name="RightGap" type="MarginContainer" parent="VBoxContainer/HoriziontalBot"]
+custom_minimum_size = Vector2(30, 0)
+layout_direction = 3
+layout_mode = 2
+
+[node name="Bot" type="MarginContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
