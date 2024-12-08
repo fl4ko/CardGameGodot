@@ -1,6 +1,14 @@
 extends HBoxContainer
 class_name Card
 
+@export_category("Oscillator")
+@export var spring: float = 150.0
+@export var damp: float = 10.0
+@export var velocity_multiplier: float = 2.0
+
+var displacement: float = 0.0 
+var oscillator_velocity: float = 0.0
+
 @onready var cards: userCardsResource = preload("res://Assets/Database/CardDatabase.tres")
 
 @onready var border: TextureRect = $Image/Border
@@ -11,6 +19,19 @@ class_name Card
 @onready var name_label: Label = $Image/Border/NameRect/NameLabel
 
 var cardName = "PoorInfantryman"
+
+var tween_hover: Tween
+var tween_handle: Tween
+var tween_glide_back: Tween
+
+var original_z_index
+var original_scale = Vector2.ONE
+var original_position = Vector2.ONE
+var last_mouse_pos: Vector2
+var mouse_velocity: Vector2
+var following_mouse: bool = false
+var last_pos: Vector2
+var velocity: Vector2
 
 # 0Name, 1Rarity, 2Type, 3Cost, 4HP, 5Attack, 6Image
 
@@ -23,7 +44,6 @@ var cardName = "PoorInfantryman"
 
 
 func _ready():
-
 	cardName = cardName.replace(" ","")
 	cardName = cardName.replace("-","")
 	var cardInfo = cards.CardsStats.get(cardName)
@@ -34,7 +54,7 @@ func _ready():
 	print(cardInfo)
 	
 	# Setting border image and size
-	set_border_image(cardType)
+	borderImage = Global.set_border_image(cardType)
 	border.texture = load(borderImage)
 	#border.scale *= size / border.texture.get_size()
 	
@@ -47,13 +67,45 @@ func _ready():
 	health_label.text = str(cardInfo[4])
 	name_label.text = str(cardInfo[0])
 	cost_label.text = str(cardInfo[3])
-
-func set_border_image(type):
-	if(type == "Normal"):
-		borderImage = str("res://Assets/CardAssets/Borders/NormalBorder.png")
-	if(type == "Fast"):
-		borderImage = str("res://Assets/CardAssets/Borders/FastBorder.png")
-	if(type == "Bait"):
-		borderImage = str("res://Assets/CardAssets/Borders/BaitBorder.png")
-
 	
+	original_scale = scale
+	original_z_index = z_index
+
+func _process(delta: float) -> void:
+	follow_mouse(delta)
+
+func _on_mouse_entered() -> void:
+	if tween_hover and tween_hover.is_running():
+		tween_hover.kill()
+	tween_hover = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
+	tween_hover.tween_property(self, "scale", original_scale * Vector2(1.1, 1.2), 0.5)
+	z_index = 21
+
+func _on_mouse_exited() -> void:
+	if tween_hover and tween_hover.is_running():
+		tween_hover.kill()
+	tween_hover = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
+	tween_hover.tween_property(self, "scale", original_scale, 0.55)
+	z_index = original_z_index
+
+func follow_mouse(delta: float) -> void:
+	if not following_mouse: return
+	var mouse_pos: Vector2 = get_global_mouse_position()
+	global_position = mouse_pos - Global.cardSize
+
+func handle_mouse_click(event: InputEvent) -> void:
+	if not event is InputEventMouseButton: return
+	if event.button_index != MOUSE_BUTTON_LEFT: return
+	
+	if event.is_pressed():
+		following_mouse = true
+		original_position = position
+	else:
+		following_mouse = false
+		if tween_glide_back and tween_glide_back.is_running():
+			tween_glide_back.kill()
+		tween_glide_back = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+		tween_glide_back.parallel().tween_property(self, "position", original_position, 0.3 + 0.075)
+
+func _on_gui_input(event: InputEvent) -> void:
+	handle_mouse_click(event)

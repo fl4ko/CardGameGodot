@@ -29,7 +29,7 @@ func cardChosen(index: int) -> void:
 	cardInfo = userDeckResource.CardsStats[cardKey]
 	cardBase.cardName = cardInfo[0]
 	cardBase.image.texture = load(cardInfo[6])
-	var borderImage = set_border_image(cardInfo[2])
+	var borderImage = Global.set_border_image(cardInfo[2])
 	cardBase.border.texture = load(borderImage)
 	cardBase.image.show()
 	add.show()
@@ -43,7 +43,8 @@ func cardChosen(index: int) -> void:
 	
 func cardAdded() -> void:
 	if(userDeckResource.CardsStats[cardKey][8] >= 3 || 
-	userDeckResource.CardsStats[cardKey][8] >= userDeckResource.CardsStats[cardKey][7]):
+	userDeckResource.CardsStats[cardKey][8] >= userDeckResource.CardsStats[cardKey][7] ||
+	Global.get_total_amount_of_cards() >= 20):
 		return
 	userDeckResource.CardsStats[cardKey][8] += 1
 	ResourceSaver.save(userDeckResource,"res://Assets/Database/User/UserCardRes.tres")
@@ -56,14 +57,6 @@ func cardRemoved() -> void:
 	ResourceSaver.save(userDeckResource,"res://Assets/Database/User/UserCardRes.tres")
 	userCardDeck.text = "In Deck: " + str(cardInfo[8])
 
-func set_border_image(type) -> String:
-	if(type == "Normal"):
-		return str("res://Assets/CardAssets/Borders/NormalBorder.png")
-	elif(type == "Fast"):
-		return str("res://Assets/CardAssets/Borders/FastBorder.png")
-	elif(type == "Bait"):
-		return  str("res://Assets/CardAssets/Borders/BaitBorder.png")
-	return "Damn"
-	
 func SwitchSceneMainMenu() -> void:
 	get_tree().change_scene_to_file("res://Assets/Scenes/main_menu.tscn")
+	

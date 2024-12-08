@@ -23,27 +23,6 @@ func _ready() -> void:
 	currentCards = userDeckResource.CardsStats.duplicate(true)
 	rot_max = deg_to_rad(rot_max)
 
-#func draw_card(amountToDraw: int):
-	#for i in range(0, amountToDraw):
-		#var amountOfChildren = $Cards.get_child_count()
-		#if amountOfChildren < 12:
-			#var card = select_random_card()
-			#print(card)
-			#if card.size() > 0:
-				#var newCardBase = cardBase.instantiate()
-				#if amountOfChildren < 6:
-					#var position_x = start_x + amountOfChildren * spacing
-					#var position_y = screen_size.y - cardSize.y - 135
-					#newCardBase.position = Vector2(position_x, position_y)
-				#else:
-					#var position_x = start_x + (amountOfChildren-6) * spacing
-					#var position_y = screen_size.y - cardSize.y - 200
-					#newCardBase.position = Vector2(position_x, position_y)
-				#newCardBase.cardName = card[0]
-				#newCardBase.scale *= cardSize/newCardBase.size
-				#$Cards.add_child(newCardBase)
-				#card[8] -= 1
-	#return get_total_amount_of_cards()
 	
 func draw_card(amountToDraw: int, fromPos: Vector2):
 	if tween and tween.is_running():
@@ -51,22 +30,23 @@ func draw_card(amountToDraw: int, fromPos: Vector2):
 	tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
 	
 	for i in range(amountToDraw):
-		var newCardBase = cardBase.instantiate()
 		var card = select_random_card()
-		newCardBase.global_position = fromPos
-		newCardBase.scale *= cardSize/newCardBase.size
-		
-		var final_pos: Vector2 = -(newCardBase.size / 2.0) - Vector2(card_offset_x * (amountToDraw - 1 - i), -550)
-		final_pos.x += ((card_offset_x * (amountToDraw-1)) / 2.0) + 550
+		if card.size() > 0:
+			var newCardBase = cardBase.instantiate()
+			newCardBase.global_position = fromPos
+			newCardBase.scale *= cardSize/newCardBase.size
+			
+			var final_pos: Vector2 = -(newCardBase.size / 2.0) - Vector2(card_offset_x * (amountToDraw - 1 - i), -550)
+			final_pos.x += ((card_offset_x * (amountToDraw-1)) / 2.0) + 550
 
-		var rot_radians: float = lerp_angle(-rot_max, rot_max, float(i)/float(amountToDraw-1))
-		
-		tween.parallel().tween_property(newCardBase, "position", final_pos, 0.3 + (i * 0.075))
-		tween.parallel().tween_property(newCardBase, "rotation", rot_radians, 0.3 + (i * 0.075))
-		
-		newCardBase.cardName = card[0]
-		$Cards.add_child(newCardBase)
-		card[8] -= 1
+			var rot_radians: float = lerp_angle(-rot_max, rot_max, float(i)/float(amountToDraw-1))
+			
+			tween.parallel().tween_property(newCardBase, "position", final_pos, 0.3 + (i * 0.075))
+			tween.parallel().tween_property(newCardBase, "rotation", rot_radians, 0.3 + (i * 0.075))
+			
+			newCardBase.cardName = card[0]
+			$Cards.add_child(newCardBase)
+			card[8] -= 1
 		
 	tween.tween_callback(set_process.bind(true))
 	tween.tween_property(self, "sine_offset_mult", anim_offset_y, 1.5).from(0.0)

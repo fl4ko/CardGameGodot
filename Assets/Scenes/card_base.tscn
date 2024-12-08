@@ -10,6 +10,8 @@
 
 [node name="CardBase" type="HBoxContainer"]
 custom_minimum_size = Vector2(300, 450)
+offset_right = 300.0
+offset_bottom = 450.0
 pivot_offset = Vector2(150, 225)
 size_flags_horizontal = 3
 script = ExtResource("1_50iv2")
@@ -141,3 +143,7 @@ grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Nazwa Karty"
 horizontal_alignment = 1
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
