@@ -8,6 +8,7 @@
 
 [node name="CardBase" type="HBoxContainer"]
 custom_minimum_size = Vector2(300, 450)
+pivot_offset = Vector2(150, 225)
 size_flags_horizontal = 3
 script = ExtResource("1_50iv2")
 
