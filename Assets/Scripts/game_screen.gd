@@ -66,6 +66,7 @@ func draw_card(amountToDraw: int, fromPos: Vector2):
 		
 		newCardBase.cardName = card[0]
 		$Cards.add_child(newCardBase)
+		card[8] -= 1
 		
 	tween.tween_callback(set_process.bind(true))
 	tween.tween_property(self, "sine_offset_mult", anim_offset_y, 1.5).from(0.0)
