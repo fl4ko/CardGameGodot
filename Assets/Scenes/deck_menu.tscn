@@ -10,8 +10,7 @@ font_size = 36
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -46.0
-offset_bottom = 47.0
+offset_bottom = 51.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 120
@@ -30,15 +29,25 @@ size_flags_vertical = 0
 text = "Your Deck"
 label_settings = SubResource("LabelSettings_lukdg")
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer2"]
+[node name="VBoxContainer" type="HBoxContainer" parent="VBoxContainer2"]
 layout_mode = 2
-theme_override_constants/margin_bottom = 42
 
-[node name="MainMenuButton" type="Button" parent="VBoxContainer2/MarginContainer"]
+[node name="MainMenuButton" type="Button" parent="VBoxContainer2/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 text = "Return to Main Menu"
+
+[node name="ClearDeck" type="Button" parent="VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Clear Deck"
+
+[node name="DeleteFromDeck" type="Button" parent="VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "DELETE ALL CARDS FROM DECK"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2"]
 layout_mode = 2
@@ -77,6 +86,9 @@ size_flags_horizontal = 3
 size_flags_vertical = 0
 horizontal_alignment = 1
 
+[node name="UserCardDeckTimer" type="Timer" parent="VBoxContainer2/HBoxContainer/GridContainer/HBoxContainer"]
+wait_time = 2.0
+
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer2/HBoxContainer/GridContainer"]
 layout_mode = 2
 
@@ -95,7 +107,10 @@ text = "Remove"
 [node name="CardBase" parent="VBoxContainer2/HBoxContainer" instance=ExtResource("2_nmhvi")]
 layout_mode = 2
 
-[connection signal="pressed" from="VBoxContainer2/MarginContainer/MainMenuButton" to="." method="SwitchSceneMainMenu"]
+[connection signal="pressed" from="VBoxContainer2/VBoxContainer/MainMenuButton" to="." method="SwitchSceneMainMenu"]
+[connection signal="pressed" from="VBoxContainer2/VBoxContainer/ClearDeck" to="." method="clear_deck"]
+[connection signal="pressed" from="VBoxContainer2/VBoxContainer/DeleteFromDeck" to="." method="delete_deck"]
 [connection signal="item_selected" from="VBoxContainer2/HBoxContainer/ScrollContainer/CardNamesList" to="." method="cardChosen"]
+[connection signal="timeout" from="VBoxContainer2/HBoxContainer/GridContainer/HBoxContainer/UserCardDeckTimer" to="." method="show_cards_in_deck"]
 [connection signal="pressed" from="VBoxContainer2/HBoxContainer/GridContainer/HBoxContainer2/Add" to="." method="cardAdded"]
 [connection signal="pressed" from="VBoxContainer2/HBoxContainer/GridContainer/HBoxContainer2/Remove" to="." method="cardRemoved"]

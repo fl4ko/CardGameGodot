@@ -5,5 +5,5 @@
 [resource]
 script = ExtResource("1_a83dc")
 PackName = "Uncommon"
-PackChance = 40
+PackChance = 30
 PackCards = ["LightningMage", "WanderingWarrior", "Duelist", "Noble", "Bastion", "Treeman"]
