@@ -1,20 +1,38 @@
-[gd_scene load_steps=6 format=3 uid="uid://cmh7ggwaxfr50"]
+[gd_scene load_steps=8 format=3 uid="uid://cmh7ggwaxfr50"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/game_screen.gd" id="1_jttc6"]
 [ext_resource type="Texture2D" uid="uid://c7yb71x7142ta" path="res://Assets/CardAssets/Background/background.jpg" id="2_whpc3"]
+[ext_resource type="PackedScene" uid="uid://bhwquipv8xeik" path="res://Assets/Scenes/player.tscn" id="3_ahtew"]
 [ext_resource type="Texture2D" uid="uid://d2f1n8ue5vyhp" path="res://Assets/CardAssets/cardBack.jpg" id="3_qihbg"]
 [ext_resource type="Texture2D" uid="uid://dww7u83m237se" path="res://Assets/CardAssets/cardBackDisabled.png" id="4_gjfma"]
+[ext_resource type="PackedScene" uid="uid://dggjublltq4hc" path="res://Assets/Scenes/enemy.tscn" id="4_j1k3a"]
 [ext_resource type="Script" path="res://Assets/Scripts/hand_draw.gd" id="5_stire"]
 
 [node name="GameScreen" type="Node2D"]
 script = ExtResource("1_jttc6")
 
 [node name="Background" type="Sprite2D" parent="."]
-position = Vector2(576, 324)
-scale = Vector2(0.4479, 0.45)
+position = Vector2(576, 432)
+scale = Vector2(0.4479, 0.6)
 texture = ExtResource("2_whpc3")
 
-[node name="Cards" type="Node" parent="."]
+[node name="Player" type="Node" parent="."]
+
+[node name="CardSlots" type="Node" parent="Player"]
+
+[node name="Cards" type="Node" parent="Player"]
+
+[node name="Player" parent="Player" instance=ExtResource("3_ahtew")]
+position = Vector2(1005, 542)
+
+[node name="Enemy" type="Node" parent="."]
+
+[node name="CardSlots" type="Node" parent="Enemy"]
+
+[node name="Cards" type="Node" parent="Enemy"]
+
+[node name="Enemy" parent="Enemy" instance=ExtResource("4_j1k3a")]
+position = Vector2(8, 72)
 
 [node name="Deck" type="Node" parent="."]
 
@@ -22,10 +40,10 @@ texture = ExtResource("2_whpc3")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 1003.0
-offset_top = 225.0
-offset_right = 451.0
-offset_bottom = 412.0
+offset_left = 993.0
+offset_top = 321.0
+offset_right = 441.0
+offset_bottom = 508.0
 grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("3_qihbg")

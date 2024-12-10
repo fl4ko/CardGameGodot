@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bbi3fcfafn7y2"]
+[gd_scene load_steps=10 format=3 uid="uid://bbi3fcfafn7y2"]
 
 [ext_resource type="Script" path="res://Assets/Models/card.gd" id="1_50iv2"]
 [ext_resource type="Texture2D" uid="uid://croabbfqga8i0" path="res://Assets/CardAssets/Other/NameBackground.png" id="3_m6v2g"]
@@ -7,6 +7,24 @@
 [ext_resource type="Texture2D" uid="uid://6lr5iavx650g" path="res://Assets/CardAssets/Other/HealthBackground.png" id="6_bdrre"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_16nlq"]
+font_size = 30
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_7abrk"]
+font_size = 30
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_t3ecl"]
+font_size = 30
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_awm8l"]
+font_size = 19
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 1)
 
 [node name="CardBase" type="HBoxContainer"]
 custom_minimum_size = Vector2(300, 450)
@@ -49,10 +67,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -5.0
-offset_top = -11.5
-offset_right = 5.0
-offset_bottom = 11.5
+offset_left = -9.0
+offset_top = -22.4623
+offset_right = 8.0
+offset_bottom = 19.5377
 grow_horizontal = 2
 grow_vertical = 2
 text = "5"
@@ -78,13 +96,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -5.0
-offset_top = -11.5
-offset_right = 5.0
-offset_bottom = 11.5
+offset_left = -9.0
+offset_top = -17.4623
+offset_right = 8.0
+offset_bottom = 24.5377
 grow_horizontal = 2
 grow_vertical = 2
 text = "2"
+label_settings = SubResource("LabelSettings_7abrk")
 horizontal_alignment = 1
 
 [node name="HealthRect" type="NinePatchRect" parent="Image/Border"]
@@ -113,6 +132,7 @@ offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "6"
+label_settings = SubResource("LabelSettings_t3ecl")
 horizontal_alignment = 1
 
 [node name="NameRect" type="NinePatchRect" parent="Image/Border"]
@@ -134,14 +154,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -49.0
-offset_top = -11.5
-offset_right = 49.0
-offset_bottom = 11.5
+offset_left = -58.0
+offset_top = -12.3708
+offset_right = 58.0
+offset_bottom = 14.6292
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Nazwa Karty"
+label_settings = SubResource("LabelSettings_awm8l")
 horizontal_alignment = 1
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]

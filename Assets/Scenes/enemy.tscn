@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://dggjublltq4hc"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/player.gd" id="1_84nvl"]
+[ext_resource type="Texture2D" uid="uid://br1ivc1rpul7c" path="res://Assets/CardAssets/enemyPortrait.png" id="2_kp3ai"]
+[ext_resource type="Texture2D" uid="uid://clioqo26l835o" path="res://Assets/CardAssets/bar_round_gloss_large.svg" id="3_c8n7h"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h0wcr"]
+texture = ExtResource("3_c8n7h")
+
+[node name="Enemy" type="Node2D"]
+script = ExtResource("1_84nvl")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_right = 100.0
+offset_bottom = 110.0
+pivot_offset = Vector2(50, 65.5)
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_kp3ai")
+
+[node name="HealthBar" type="ProgressBar" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxTexture_h0wcr")
+max_value = 30.0
+value = 30.0
