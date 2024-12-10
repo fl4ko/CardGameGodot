@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="packsResource" load_steps=2 format=3 uid="uid://c7gcd2iixagn0"]
+
+[ext_resource type="Script" path="res://Assets/Database/Pack/Packs.gd" id="1_bndjy"]
+
+[resource]
+script = ExtResource("1_bndjy")
+PackName = "Legendary"
+PackChance = 4
+PackCards = ["ChaosRotKnight", "ChaosMaruderHorsemaster", "ChaosWarshrine"]

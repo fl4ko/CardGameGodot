@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="PacksResource" load_steps=2 format=3 uid="uid://c1me37xqhk80l"]
+
+[ext_resource type="Script" path="res://Assets/Database/Pack/Packs.gd" id="1_6bvt0"]
+
+[resource]
+script = ExtResource("1_6bvt0")
+PackName = "Epic"
+PackChance = 10
+PackCards = ["Dreadspear", "Bleaksword", "ColdOneDreadknight", "Harpy"]

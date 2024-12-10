@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="packsResource" load_steps=2 format=3 uid="uid://yr3c55wyciay"]
+
+[ext_resource type="Script" path="res://Assets/Database/Pack/Packs.gd" id="1_iv8l8"]
+
+[resource]
+script = ExtResource("1_iv8l8")
+PackName = "Mythical"
+PackChance = 1
+PackCards = ["TheRedDuke", "TheGrandHierophant"]
