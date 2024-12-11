@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bfsfypjw117jv"]
+[gd_scene load_steps=10 format=3 uid="uid://by8a4e7h8lw4f"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/main_menu.gd" id="1_6gihu"]
 [ext_resource type="Texture2D" uid="uid://cxjubksc1btm6" path="res://Assets/CardAssets/Background/game_background_3/layers/clouds_1.png" id="2_0ywrt"]
@@ -9,9 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://cmj5g3ujaw1ri" path="res://Assets/CardAssets/Background/game_background_3/layers/plant.png" id="7_yq8yq"]
 [ext_resource type="Texture2D" uid="uid://bhltnwheniv41" path="res://Assets/CardAssets/Background/game_background_3/layers/rocks.png" id="8_6lygf"]
 [ext_resource type="Texture2D" uid="uid://cbp6fy1c2vrsa" path="res://Assets/CardAssets/Background/game_background_3/layers/sky.png" id="9_uxtyj"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_erenw"]
-font_size = 36
 
 [node name="MainMenu" type="MarginContainer"]
 anchors_preset = 15
@@ -57,13 +54,13 @@ layout_mode = 2
 size_flags_vertical = 4
 text = "gamescene"
 
-[node name="Title" type="Label" parent="."]
+[node name="Title" type="RichTextLabel" parent="."]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-text = "Card Game"
-label_settings = SubResource("LabelSettings_erenw")
-horizontal_alignment = 1
+bbcode_enabled = true
+text = "[fill]{Card Game}[/fill]"
+fit_content = true
 
 [node name="Sky" type="Sprite2D" parent="."]
 z_index = -4

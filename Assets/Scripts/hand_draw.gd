@@ -13,6 +13,4 @@ func _ready() -> void:
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 			if event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
-				if not disabled:
-					$'../../'.draw_card(Global.get_total_amount_of_cards(), position)
-					disabled = true
+				$'../../'.draw_card(Global.get_total_amount_of_cards(), position, true)
