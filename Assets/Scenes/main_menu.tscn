@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://by8a4e7h8lw4f"]
+[gd_scene load_steps=11 format=3 uid="uid://by8a4e7h8lw4f"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/main_menu.gd" id="1_6gihu"]
 [ext_resource type="Texture2D" uid="uid://cxjubksc1btm6" path="res://Assets/CardAssets/Background/game_background_3/layers/clouds_1.png" id="2_0ywrt"]
+[ext_resource type="Texture2D" uid="uid://d15js1rmfbmgl" path="res://Assets/Database/GUI/woodTexture.png" id="2_2hcew"]
 [ext_resource type="Texture2D" uid="uid://ch4x5sr4qscvo" path="res://Assets/CardAssets/Background/game_background_3/layers/clouds_2.png" id="3_puxaw"]
 [ext_resource type="Texture2D" uid="uid://d0uhhstw74lfl" path="res://Assets/CardAssets/Background/game_background_3/layers/ground_1.png" id="4_omsdy"]
 [ext_resource type="Texture2D" uid="uid://dd5yg22raiwmg" path="res://Assets/CardAssets/Background/game_background_3/layers/ground_2.png" id="5_0e5hm"]
@@ -30,36 +31,102 @@ layout_mode = 2
 alignment = 1
 
 [node name="Start Game" type="Button" parent="HBoxContainer/VBoxContainer"]
+z_index = 1
 layout_mode = 2
-size_flags_vertical = 4
 text = "Start Game"
+flat = true
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/VBoxContainer/Start Game"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_2hcew")
+expand_mode = 1
 
 [node name="Open Packs" type="Button" parent="HBoxContainer/VBoxContainer"]
+z_index = 1
 layout_mode = 2
 size_flags_vertical = 4
 text = "Open Packs"
+flat = true
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/VBoxContainer/Open Packs"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_2hcew")
+expand_mode = 1
 
 [node name="Change Deck" type="Button" parent="HBoxContainer/VBoxContainer"]
+z_index = 1
 layout_mode = 2
 size_flags_vertical = 4
 text = "Change Deck"
+flat = true
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/VBoxContainer/Change Deck"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_2hcew")
+expand_mode = 1
 
 [node name="Open Packs2" type="Button" parent="HBoxContainer/VBoxContainer"]
+z_index = 1
 layout_mode = 2
 size_flags_vertical = 4
 text = "card_base"
+flat = true
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/VBoxContainer/Open Packs2"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_2hcew")
+expand_mode = 1
 
 [node name="Open Packs3" type="Button" parent="HBoxContainer/VBoxContainer"]
+z_index = 1
 layout_mode = 2
 size_flags_vertical = 4
 text = "gamescene"
+flat = true
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/VBoxContainer/Open Packs3"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_2hcew")
+expand_mode = 1
 
 [node name="Title" type="RichTextLabel" parent="."]
+z_index = 1
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 bbcode_enabled = true
-text = "[fill]{Card Game}[/fill]"
+text = "[center][font_size=33]Card Game[/font_size][/center]"
 fit_content = true
 
 [node name="Sky" type="Sprite2D" parent="."]
