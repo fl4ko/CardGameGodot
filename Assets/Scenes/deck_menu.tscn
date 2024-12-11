@@ -105,7 +105,9 @@ size_flags_vertical = 0
 text = "Remove"
 
 [node name="CardBase" parent="VBoxContainer2/HBoxContainer" instance=ExtResource("2_nmhvi")]
+custom_minimum_size = Vector2(300, 500)
 layout_mode = 2
+size_flags_vertical = 4
 
 [connection signal="pressed" from="VBoxContainer2/VBoxContainer/MainMenuButton" to="." method="SwitchSceneMainMenu"]
 [connection signal="pressed" from="VBoxContainer2/VBoxContainer/ClearDeck" to="." method="clear_deck"]

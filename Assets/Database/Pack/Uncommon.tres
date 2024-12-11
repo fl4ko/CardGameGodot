@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="packsResource" load_steps=2 format=3 uid="uid://dj0c8kmsc7k83"]
+[gd_resource type="Resource" script_class="PacksResource" load_steps=2 format=3 uid="uid://dj0c8kmsc7k83"]
 
 [ext_resource type="Script" path="res://Assets/Database/Pack/Packs.gd" id="1_a83dc"]
 
