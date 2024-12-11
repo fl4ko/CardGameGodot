@@ -20,10 +20,10 @@ texture = ExtResource("2_whpc3")
 
 [node name="CardSlots" type="Node" parent="Player"]
 
-[node name="Cards" type="Node" parent="Player"]
-
 [node name="Player" parent="Player" instance=ExtResource("3_ahtew")]
-position = Vector2(1005, 542)
+position = Vector2(1005, 536)
+
+[node name="Cards" type="Node" parent="Player"]
 
 [node name="Enemy" type="Node" parent="."]
 
@@ -32,7 +32,7 @@ position = Vector2(1005, 542)
 [node name="Cards" type="Node" parent="Enemy"]
 
 [node name="Enemy" parent="Enemy" instance=ExtResource("4_j1k3a")]
-position = Vector2(8, 72)
+position = Vector2(32, 72)
 
 [node name="Deck" type="Node" parent="."]
 

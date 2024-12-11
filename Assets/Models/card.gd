@@ -6,10 +6,8 @@ class_name Card
 @export var damp: float = 10.0
 @export var velocity_multiplier: float = 2.0
 
-var displacement: float = 0.0 
-var oscillator_velocity: float = 0.0
-
 @onready var cards: userCardsResource = preload("res://Assets/Database/CardDatabase.tres")
+@onready var game_screen: PackedScene = preload("res://Assets/Scenes/game_screen.tscn")
 
 @onready var border: TextureRect = $Image/Border
 @onready var image: TextureRect = $Image
@@ -27,13 +25,21 @@ var tween_staright_pickup: Tween
 
 var original_z_index
 var original_rotation
+
+var displacement: float = 0.0 
+var oscillator_velocity: float = 0.0
+
 var original_scale = Vector2.ONE
 var original_position = Vector2.ONE
+
 var last_mouse_pos: Vector2
 var mouse_velocity: Vector2
-var following_mouse: bool = false
 var last_pos: Vector2
 var velocity: Vector2
+
+var following_mouse: bool = false
+var is_in_slot: bool = false
+var is_player: bool = true
 
 # 0Name, 1Rarity, 2Type, 3Cost, 4HP, 5Attack, 6Image
 
@@ -77,18 +83,20 @@ func _process(delta: float) -> void:
 	follow_mouse(delta)
 
 func _on_mouse_entered() -> void:
-	if tween_hover and tween_hover.is_running():
-		tween_hover.kill()
-	tween_hover = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
-	tween_hover.parallel().tween_property(self, "scale", original_scale * Vector2(1.1, 1.2), 0.5)
-	z_index = 21
+	if is_player:
+		if tween_hover and tween_hover.is_running():
+			tween_hover.kill()
+		tween_hover = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
+		tween_hover.parallel().tween_property(self, "scale", original_scale * Vector2(1.1, 1.2), 0.5)
+		z_index = 21
 
 func _on_mouse_exited() -> void:
-	if tween_hover and tween_hover.is_running():
-		tween_hover.kill()
-	tween_hover = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
-	tween_hover.parallel().tween_property(self, "scale", original_scale, 0.55)
-	z_index = original_z_index
+	if is_player:
+		if tween_hover and tween_hover.is_running():
+			tween_hover.kill()
+		tween_hover = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
+		tween_hover.parallel().tween_property(self, "scale", original_scale, 0.55)
+		z_index = original_z_index
 
 func follow_mouse(delta: float) -> void:
 	if not following_mouse: return
@@ -112,12 +120,34 @@ func handle_mouse_click(event: InputEvent) -> void:
 		following_mouse = true
 	else:
 		following_mouse = false
-		if tween_glide_back and tween_glide_back.is_running():
-			tween_glide_back.kill()
-		tween_glide_back = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
-		tween_glide_back.parallel().tween_property(self, "position", original_position, 0.3 + 0.075)
-		tween_glide_back.parallel().tween_property(self, "rotation", original_rotation, 0.3 + 0.075)
-
+		var card_slots = $'../../CardSlots'
+		var card_slolts_string = card_slots.get_tree_string_pretty()
+		for i in range(card_slots.get_child_count()):
+			var slot = card_slots.get_child(i, true)
+			if Global.is_point_in_rectangle(get_global_mouse_position(), slot.get_position(), slot.get_size()):
+				if slot.is_empty:
+					is_in_slot = true
+					slot.is_empty = false
+					position = slot.get_position() - Vector2(87.5, 130.5)
+					
+		if not is_in_slot:
+			if tween_glide_back and tween_glide_back.is_running():
+				tween_glide_back.kill()
+			tween_glide_back = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+			tween_glide_back.parallel().tween_property(self, "position", original_position, 0.3 + 0.075)
+			tween_glide_back.parallel().tween_property(self, "rotation", original_rotation, 0.3 + 0.075)
 
 func _on_gui_input(event: InputEvent) -> void:
-	handle_mouse_click(event)
+	if is_player and not is_in_slot:
+		handle_mouse_click(event)
+		
+
+func set_as_enemy() -> void:
+	is_player = false
+	image.texture = load("res://Assets/CardAssets/cardBack.jpg")
+	border.hide()
+	name_label.hide()
+	attack_label.hide()
+	cost_label.hide()
+	health_label.hide()
+	

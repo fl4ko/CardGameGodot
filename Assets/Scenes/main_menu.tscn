@@ -1,13 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bfsfypjw117jv"]
+[gd_scene load_steps=6 format=3 uid="uid://bfsfypjw117jv"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/main_menu.gd" id="1_6gihu"]
 [ext_resource type="Texture2D" uid="uid://ckdxgavikkbon" path="res://Assets/CardAssets/Background/parallax_forest_pack/layers/parallax-forest-back-trees.png" id="2_ey0v0"]
 [ext_resource type="Texture2D" uid="uid://bnu7jbf2bcmkw" path="res://Assets/CardAssets/Background/parallax_forest_pack/layers/parallax-forest-front-trees.png" id="3_4dgrm"]
 [ext_resource type="Texture2D" uid="uid://dedgkile7nfe7" path="res://Assets/CardAssets/Background/parallax_forest_pack/layers/parallax-forest-lights.png" id="4_t48l2"]
 [ext_resource type="Texture2D" uid="uid://cu0llvdlkpo4f" path="res://Assets/CardAssets/Background/parallax_forest_pack/layers/parallax-forest-middle-trees.png" id="5_rd7wp"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_erenw"]
-font_size = 36
 
 [node name="MainMenu" type="MarginContainer"]
 anchors_preset = 15
@@ -53,13 +50,13 @@ layout_mode = 2
 size_flags_vertical = 4
 text = "gamescene"
 
-[node name="Title" type="Label" parent="."]
+[node name="Title" type="RichTextLabel" parent="."]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-text = "Card Game"
-label_settings = SubResource("LabelSettings_erenw")
-horizontal_alignment = 1
+bbcode_enabled = true
+text = "[fill]{Card Game}[/fill]"
+fit_content = true
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
 z_index = -1
@@ -82,7 +79,7 @@ texture = ExtResource("4_t48l2")
 centered = false
 
 [node name="MiddleTrees" type="Sprite2D" parent="Parallax2D"]
-scale = Vector2(4.24, 4.05)
+scale = Vector2(4.24, 5.38125)
 texture = ExtResource("5_rd7wp")
 centered = false
 

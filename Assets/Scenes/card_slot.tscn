@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://daw5hmparv5el"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/card_slot.gd" id="1_oa8sb"]
+[ext_resource type="Texture2D" uid="uid://dvmei5yeb4lhf" path="res://Assets/CardAssets/cardSlot.png" id="2_r5v6g"]
+
+[node name="CardSlot" type="MarginContainer"]
+offset_right = 125.0
+offset_bottom = 187.0
+pivot_offset = Vector2(62.5, 93.5)
+script = ExtResource("1_oa8sb")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("2_r5v6g")
