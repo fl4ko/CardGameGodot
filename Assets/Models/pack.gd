@@ -6,6 +6,7 @@ var userDeck: Deck
 
 func _init():
 	userDeck = Deck.new()
+	userDeck.userDeckResource.playerCurrency = 1000
 	var path = "res://Assets/Database/Pack/"
 	var dir = DirAccess.get_files_at("res://Assets/Database/Pack/")
 	for item in dir:
@@ -25,6 +26,8 @@ func _init():
 		packsProbabilities[packsProbabilitiesKeys[i]] = culm
 
 func open_pack() -> Array:
+	if(!(userDeck.userDeckResource.playerCurrency >= 200)):
+		return ["", "Za mało pieniędzy"]
 	var random = randi_range(1,100)
 	var cardKey
 	var packName
@@ -44,6 +47,7 @@ func open_pack() -> Array:
 			userDeck.userDeckResource.CardsStats[cardKey][i] = cardDatabaseRes.CardsStats[cardKey][i]
 		userDeck.userDeckResource.CardsStats[cardKey][7] = 1
 		userDeck.userDeckResource.CardsStats[cardKey][8] = 0
+	userDeck.userDeckResource.playerCurrency -= 200
 	ResourceSaver.save(userDeck.userDeckResource,"res://Assets/Database/User/UserCardRes.tres")
 	return [packName, userDeck.userDeckResource.CardsStats[cardKey][0]]
 

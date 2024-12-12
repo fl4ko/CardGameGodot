@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bxqj0i2f66j65"]
+[gd_scene load_steps=8 format=3 uid="uid://bxqj0i2f66j65"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/pack_menu.gd" id="1_j0lyq"]
 [ext_resource type="Texture2D" uid="uid://c7yb71x7142ta" path="res://Assets/Database/GUI/Background/background.jpg" id="2_khwig"]
@@ -6,6 +6,9 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_lounx"]
 font_size = 36
+
+[sub_resource type="LabelSettings" id="LabelSettings_jagms"]
+font_size = 22
 
 [sub_resource type="LabelSettings" id="LabelSettings_8lpqb"]
 font_size = 32
@@ -25,11 +28,22 @@ theme_override_constants/margin_right = 120
 theme_override_constants/margin_bottom = 80
 script = ExtResource("1_j0lyq")
 
-[node name="Label" type="Label" parent="."]
+[node name="VBoxContainer3" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer3"]
 layout_mode = 2
 size_flags_vertical = 0
 text = "Packs"
 label_settings = SubResource("LabelSettings_lounx")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer3"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 55
+
+[node name="Currency" type="Label" parent="VBoxContainer3"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_jagms")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2

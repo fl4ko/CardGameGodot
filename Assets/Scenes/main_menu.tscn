@@ -30,13 +30,13 @@ layout_mode = 2
 layout_mode = 2
 alignment = 1
 
-[node name="Start Game" type="Button" parent="HBoxContainer/VBoxContainer"]
+[node name="StartGame" type="Button" parent="HBoxContainer/VBoxContainer"]
 z_index = 1
 layout_mode = 2
 text = "Start Game"
 flat = true
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/VBoxContainer/Start Game"]
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/VBoxContainer/StartGame"]
 z_index = -1
 layout_mode = 1
 anchors_preset = 15
@@ -46,6 +46,9 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_2hcew")
 expand_mode = 1
+
+[node name="Timer" type="Timer" parent="HBoxContainer/VBoxContainer/StartGame"]
+wait_time = 3.0
 
 [node name="Open Packs" type="Button" parent="HBoxContainer/VBoxContainer"]
 z_index = 1
@@ -100,6 +103,18 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_2hcew")
 expand_mode = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="InfoMessage" type="Label" parent="HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_top = 103
 
 [node name="Title" type="RichTextLabel" parent="."]
 z_index = 1
@@ -165,7 +180,8 @@ scale = Vector2(0.6, 0.8)
 texture = ExtResource("3_puxaw")
 centered = false
 
-[connection signal="pressed" from="HBoxContainer/VBoxContainer/Start Game" to="." method="SwitchSceneGame"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/StartGame" to="." method="SwitchSceneGame"]
+[connection signal="timeout" from="HBoxContainer/VBoxContainer/StartGame/Timer" to="." method="hide_text"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/Open Packs" to="." method="SwitchScenePack"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/Change Deck" to="." method="SwitchSceneDeck"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/Open Packs2" to="." method="SwitchScene_test"]
