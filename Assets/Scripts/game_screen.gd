@@ -22,7 +22,8 @@ var start_x = cardSize.x / 2
 var valid_cards: Array
 
 var sine_offset_mult: float = 0.0
-@onready var tween: Tween
+@onready var tweenPlayer: Tween
+@onready var tweenEnemy: Tween
 
 func _ready() -> void:
 	print(userDeck.userDeckResource.CardsStats.keys())
@@ -43,9 +44,14 @@ func _ready() -> void:
 					valid_cards.append(key)
 
 func draw_card(amountToDraw: int, fromPos: Vector2, is_player: bool):
-	if tween and tween.is_running():
-		tween.kill()
-	tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
+	if(is_player):
+		if tweenPlayer and tweenPlayer.is_running():
+			tweenPlayer.kill()
+		tweenPlayer = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
+	else:
+		if tweenEnemy and tweenEnemy.is_running():
+			tweenEnemy.kill()
+		tweenEnemy = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
 	
 	for i in range(amountToDraw):
 		var card = current_cards[valid_cards[i]]
@@ -57,18 +63,29 @@ func draw_card(amountToDraw: int, fromPos: Vector2, is_player: bool):
 			var final_pos: Vector2 = -(new_card_base.size / 2.0) - Vector2(card_offset_x * (amountToDraw - 1 - i), -550)
 			final_pos.x += ((card_offset_x * (amountToDraw-1)) / 2.0) + 550
 			var rot_radians: float
-		
-			final_pos.y += 220
-			rot_radians = lerp_angle(-rot_max, rot_max, float(i)/float(amountToDraw-1))
-			
-			new_card_base.cardName = card[0]
-			$Player/Cards.add_child(new_card_base)
-
-			tween.parallel().tween_property(new_card_base, "position", final_pos, 0.3 + (i * 0.075))
-			tween.parallel().tween_property(new_card_base, "rotation", rot_radians, 0.3 + (i * 0.075))
-			
-	tween.tween_callback(set_process.bind(true))
-	tween.tween_property(self, "sine_offset_mult", anim_offset_y, 1.5).from(0.0)
+			if(!is_player):
+				final_pos.y -= 440
+				rot_radians = -lerp_angle(-rot_max, rot_max, float(i)/float(amountToDraw-1))
+				new_card_base.cardName = card[0]
+				$Enemy/Cards.add_child(new_card_base)
+				new_card_base.image.texture = load("res://Assets/CardAssets/cardBack.jpg")
+				new_card_base.border.hide()
+				new_card_base.is_player = false
+				tweenEnemy.parallel().tween_property(new_card_base, "position", final_pos, 0.3 + (i * 0.075))
+				tweenEnemy.parallel().tween_property(new_card_base, "rotation", rot_radians, 0.3 + (i * 0.075))
+			else:
+				final_pos.y += 220
+				rot_radians = lerp_angle(-rot_max, rot_max, float(i)/float(amountToDraw-1))
+				new_card_base.cardName = card[0]
+				$Player/Cards.add_child(new_card_base)
+				tweenPlayer.parallel().tween_property(new_card_base, "position", final_pos, 0.3 + (i * 0.075))
+				tweenPlayer.parallel().tween_property(new_card_base, "rotation", rot_radians, 0.3 + (i * 0.075))
+	if(!is_player):	
+		tweenEnemy.tween_callback(set_process.bind(true))
+		tweenEnemy.tween_property(self, "sine_offset_mult", anim_offset_y, 1.5).from(0.0)
+	else:	
+		tweenPlayer.tween_callback(set_process.bind(true))
+		tweenPlayer.tween_property(self, "sine_offset_mult", anim_offset_y, 1.5).from(0.0)
 
 func place_card_slots(is_player: bool, slots_amount) -> void:
 	var spacing = cardSize.x * slot_spacing_ratio

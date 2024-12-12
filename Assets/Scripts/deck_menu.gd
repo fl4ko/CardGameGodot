@@ -21,6 +21,7 @@ func _ready() -> void:
 		cardInfo = userDeck.userDeckResource.CardsStats[key]
 		cardNamesList.add_item(cardInfo[0])
 	cardBase.image.hide()
+	cardBase.is_player = false
 	add.hide()
 	remove.hide()
 	userCardMax.hide()

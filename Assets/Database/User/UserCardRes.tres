@@ -1,17 +1,22 @@
-[gd_resource type="Resource" script_class="userCardsResource" load_steps=2 format=3]
+[gd_resource type="Resource" script_class="userCardsResource" load_steps=2 format=3 uid="uid://ce5p4n3u2lv78"]
 
 [ext_resource type="Script" path="res://Assets/Database/User/UserCards.gd" id="1_yp661"]
 
 [resource]
 script = ExtResource("1_yp661")
 CardsStats = {
-"Acolyte": ["Acolyte", "Common", "Fast", 2, 1, 6, "res://Assets/Database/Units/Common/Acolyte.png", 2, 0],
-"Cavalryman": ["Cavalryman", "Rare", "Fast", 3, 6, 7, "res://Assets/Database/Units/Rare/Cavalryman.jpg", 1, 0],
-"Crossbowman": ["Crossbow-man", "Common", "Normal", 1, 3, 5, "res://Assets/Database/Units/Common/Crossbowman.png", 1, 0],
-"EliteWarrior": ["Elite Warrior", "Rare", "Normal", 3, 8, 7, "res://Assets/Database/Units/Rare/EliteWarrior.jpg", 1, 1],
-"Jester": ["Jester", "Common", "Bait", 2, 4, 2, "res://Assets/Database/Units/Common/Jester.png", 1, 0],
-"Noble": ["Noble", "Uncommon", "Fast", 2, 2, 7, "res://Assets/Database/Units/Uncommon/Noble.jpg", 2, 2],
-"WanderingWarrior": ["Wandering Warrior", "Uncommon", "Normal", 2, 7, 5, "res://Assets/Database/Units/Uncommon/WanderingWarrior.jpg", 3, 0]
+"Bastion": ["Bastion", "Uncommon", "Bait", 2, 7, 3, "res://Assets/Database/Units/Uncommon/Bastion.png", 1, 1],
+"Crossbowman": ["Crossbow-man", "Common", "Normal", 1, 3, 5, "res://Assets/Database/Units/Common/Crossbowman.png", 1, 1],
+"Duelist": ["Duelist", "Uncommon", "Fast", 2, 3, 6, "res://Assets/Database/Units/Uncommon/Duelist.jpg", 1, 1],
+"Jester": ["Jester", "Common", "Bait", 2, 4, 2, "res://Assets/Database/Units/Common/Jester.png", 2, 1],
+"LightningMage": ["Lightning Mage", "Uncommon", "Normal", 2, 3, 7, "res://Assets/Database/Units/Uncommon/LightningMage.jpg", 1, 1],
+"PoorInfantryman": ["Poor Infantryman", "Common", "Normal", 1, 5, 3, "res://Assets/Database/Units/Common/PoorInfantryman.png", 2, 2],
+"Ranger": ["Ranger", "Common", "Fast", 3, 4, 6, "res://Assets/Database/Units/Common/Ranger.png", 1, 1],
+"Spy": ["Spy", "Common", "Fast", 1, 5, 3, "res://Assets/Database/Units/Common/Spy.png", 1, 1],
+"TheGrandHierophant": ["The Grand Hierophant", "Mythical", "Bait", 7, 23, 8, "res://Assets/Database/Units/Mythical/TheGrandHierophant.png", 1, 1],
+"ThornKnight": ["Thorn Knight", "Rare", "Fast", 3, 5, 8, "res://Assets/Database/Units/Rare/ThornKnight.png", 2, 1],
+"Treeman": ["Treeman", "Uncommon", "Bait", 3, 8, 3, "res://Assets/Database/Units/Uncommon/Treeman.png", 1, 1],
+"WanderingWarrior": ["Wandering Warrior", "Uncommon", "Normal", 2, 7, 5, "res://Assets/Database/Units/Uncommon/WanderingWarrior.jpg", 3, 3]
 }
 playerHp = 30
 playerMana = 1
