@@ -1,6 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bxqj0i2f66j65"]
+[gd_scene load_steps=7 format=3 uid="uid://bxqj0i2f66j65"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/pack_menu.gd" id="1_j0lyq"]
+[ext_resource type="Texture2D" uid="uid://c7yb71x7142ta" path="res://Assets/Database/GUI/Background/background.jpg" id="2_khwig"]
+[ext_resource type="Texture2D" uid="uid://d15js1rmfbmgl" path="res://Assets/Database/GUI/woodTexture.png" id="2_m3n7o"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_lounx"]
 font_size = 36
@@ -40,11 +42,35 @@ size_flags_vertical = 4
 layout_mode = 2
 size_flags_vertical = 4
 text = "Open a Random Pack"
+flat = true
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/VBoxContainer/PackOpen"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_m3n7o")
+expand_mode = 1
 
 [node name="MenuButton" type="Button" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 text = "Return to Main menu"
+flat = true
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/VBoxContainer/MenuButton"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_m3n7o")
+expand_mode = 1
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
@@ -60,6 +86,12 @@ label_settings = SubResource("LabelSettings_8lpqb")
 layout_mode = 2
 size_flags_horizontal = 6
 label_settings = SubResource("LabelSettings_amsvy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -2
+scale = Vector2(0.448, 0.6)
+texture = ExtResource("2_khwig")
+centered = false
 
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/PackOpen" to="." method="OpenPack"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/MenuButton" to="." method="SwitchSceneMainMenu"]

@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://88ytat0kncpg"]
+[gd_scene load_steps=6 format=3 uid="uid://88ytat0kncpg"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/deck_menu.gd" id="2_4h1fi"]
+[ext_resource type="Texture2D" uid="uid://d15js1rmfbmgl" path="res://Assets/Database/GUI/woodTexture.png" id="2_k3wrk"]
 [ext_resource type="PackedScene" uid="uid://bbi3fcfafn7y2" path="res://Assets/Scenes/card_base.tscn" id="2_nmhvi"]
+[ext_resource type="Texture2D" uid="uid://c7yb71x7142ta" path="res://Assets/Database/GUI/Background/background.jpg" id="3_d7hfr"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_lukdg"]
 font_size = 36
@@ -37,17 +39,53 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 text = "Return to Main Menu"
+flat = true
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer2/VBoxContainer/MainMenuButton"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_k3wrk")
+expand_mode = 1
 
 [node name="ClearDeck" type="Button" parent="VBoxContainer2/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 10
 text = "Clear Deck"
+flat = true
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer2/VBoxContainer/ClearDeck"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_k3wrk")
+expand_mode = 1
 
 [node name="DeleteFromDeck" type="Button" parent="VBoxContainer2/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 text = "DELETE ALL CARDS FROM DECK"
+flat = true
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer2/VBoxContainer/DeleteFromDeck"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_k3wrk")
+expand_mode = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2"]
 layout_mode = 2
@@ -64,6 +102,18 @@ custom_minimum_size = Vector2(300, 300)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer2/HBoxContainer/ScrollContainer/CardNamesList"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_k3wrk")
+expand_mode = 1
+flip_h = true
 
 [node name="GridContainer" type="VBoxContainer" parent="VBoxContainer2/HBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
@@ -97,17 +147,47 @@ layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 0
 text = "Add"
+flat = true
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer2/HBoxContainer/GridContainer/HBoxContainer2/Add"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_k3wrk")
+expand_mode = 1
 
 [node name="Remove" type="Button" parent="VBoxContainer2/HBoxContainer/GridContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 0
 text = "Remove"
+flat = true
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer2/HBoxContainer/GridContainer/HBoxContainer2/Remove"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_k3wrk")
+expand_mode = 1
 
 [node name="CardBase" parent="VBoxContainer2/HBoxContainer" instance=ExtResource("2_nmhvi")]
 custom_minimum_size = Vector2(300, 500)
 layout_mode = 2
 size_flags_vertical = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -2
+scale = Vector2(0.448, 0.6)
+texture = ExtResource("3_d7hfr")
+centered = false
 
 [connection signal="pressed" from="VBoxContainer2/VBoxContainer/MainMenuButton" to="." method="SwitchSceneMainMenu"]
 [connection signal="pressed" from="VBoxContainer2/VBoxContainer/ClearDeck" to="." method="clear_deck"]

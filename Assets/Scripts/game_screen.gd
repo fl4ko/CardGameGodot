@@ -7,7 +7,8 @@ const slot_spacing_ratio: float = 0.2
 @export var rot_max: float = 10.0
 @export var anim_offset_y: float = 0.3
 
-@onready var userDeckResource : userCardsResource = preload("res://Assets/Database/User/UserCardRes.tres")
+@onready var userDeck : Deck = Deck.new()
+@onready var enemyDeck : Deck = Deck.new()
 @onready var card_base = preload("res://Assets/Scenes/card_base.tscn")
 @onready var card_slot = preload("res://Assets/Scenes/card_slot.tscn")
 
@@ -24,9 +25,9 @@ var sine_offset_mult: float = 0.0
 @onready var tween: Tween
 
 func _ready() -> void:
-	print(userDeckResource.CardsStats.keys())
-	current_cards = userDeckResource.CardsStats.duplicate(true)
-	enemy_cards = userDeckResource.CardsStats.duplicate(true)
+	print(userDeck.userDeckResource.CardsStats.keys())
+	current_cards = userDeck.userDeckResource.CardsStats.duplicate(true)
+	enemy_cards = enemyDeck.userDeckResource.CardsStats.duplicate(true)
 	rot_max = deg_to_rad(rot_max)
 	#var new_card_slot = card_slot.instantiate()
 	#$Player/CardSlots.add_child(new_card_slot)

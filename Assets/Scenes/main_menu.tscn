@@ -1,15 +1,15 @@
 [gd_scene load_steps=11 format=3 uid="uid://by8a4e7h8lw4f"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/main_menu.gd" id="1_6gihu"]
-[ext_resource type="Texture2D" uid="uid://cxjubksc1btm6" path="res://Assets/CardAssets/Background/game_background_3/layers/clouds_1.png" id="2_0ywrt"]
+[ext_resource type="Texture2D" uid="uid://cxjubksc1btm6" path="res://Assets/Database/GUI/Background/game_background_3/layers/clouds_1.png" id="2_0ywrt"]
 [ext_resource type="Texture2D" uid="uid://d15js1rmfbmgl" path="res://Assets/Database/GUI/woodTexture.png" id="2_2hcew"]
-[ext_resource type="Texture2D" uid="uid://ch4x5sr4qscvo" path="res://Assets/CardAssets/Background/game_background_3/layers/clouds_2.png" id="3_puxaw"]
-[ext_resource type="Texture2D" uid="uid://d0uhhstw74lfl" path="res://Assets/CardAssets/Background/game_background_3/layers/ground_1.png" id="4_omsdy"]
-[ext_resource type="Texture2D" uid="uid://dd5yg22raiwmg" path="res://Assets/CardAssets/Background/game_background_3/layers/ground_2.png" id="5_0e5hm"]
-[ext_resource type="Texture2D" uid="uid://s8yef54b01t6" path="res://Assets/CardAssets/Background/game_background_3/layers/ground_3.png" id="6_vqlc7"]
-[ext_resource type="Texture2D" uid="uid://cmj5g3ujaw1ri" path="res://Assets/CardAssets/Background/game_background_3/layers/plant.png" id="7_yq8yq"]
-[ext_resource type="Texture2D" uid="uid://bhltnwheniv41" path="res://Assets/CardAssets/Background/game_background_3/layers/rocks.png" id="8_6lygf"]
-[ext_resource type="Texture2D" uid="uid://cbp6fy1c2vrsa" path="res://Assets/CardAssets/Background/game_background_3/layers/sky.png" id="9_uxtyj"]
+[ext_resource type="Texture2D" uid="uid://ch4x5sr4qscvo" path="res://Assets/Database/GUI/Background/game_background_3/layers/clouds_2.png" id="3_puxaw"]
+[ext_resource type="Texture2D" uid="uid://d0uhhstw74lfl" path="res://Assets/Database/GUI/Background/game_background_3/layers/ground_1.png" id="4_omsdy"]
+[ext_resource type="Texture2D" uid="uid://dd5yg22raiwmg" path="res://Assets/Database/GUI/Background/game_background_3/layers/ground_2.png" id="5_0e5hm"]
+[ext_resource type="Texture2D" uid="uid://s8yef54b01t6" path="res://Assets/Database/GUI/Background/game_background_3/layers/ground_3.png" id="6_vqlc7"]
+[ext_resource type="Texture2D" uid="uid://cmj5g3ujaw1ri" path="res://Assets/Database/GUI/Background/game_background_3/layers/plant.png" id="7_yq8yq"]
+[ext_resource type="Texture2D" uid="uid://bhltnwheniv41" path="res://Assets/Database/GUI/Background/game_background_3/layers/rocks.png" id="8_6lygf"]
+[ext_resource type="Texture2D" uid="uid://cbp6fy1c2vrsa" path="res://Assets/Database/GUI/Background/game_background_3/layers/sky.png" id="9_uxtyj"]
 
 [node name="MainMenu" type="MarginContainer"]
 anchors_preset = 15

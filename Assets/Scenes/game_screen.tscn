@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://cmh7ggwaxfr50"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/game_screen.gd" id="1_jttc6"]
-[ext_resource type="Texture2D" uid="uid://c7yb71x7142ta" path="res://Assets/CardAssets/Background/background.jpg" id="2_whpc3"]
+[ext_resource type="Texture2D" uid="uid://c7yb71x7142ta" path="res://Assets/Database/GUI/Background/background.jpg" id="2_whpc3"]
 [ext_resource type="PackedScene" uid="uid://bhwquipv8xeik" path="res://Assets/Scenes/player.tscn" id="3_ahtew"]
 [ext_resource type="Texture2D" uid="uid://d2f1n8ue5vyhp" path="res://Assets/CardAssets/cardBack.jpg" id="3_qihbg"]
 [ext_resource type="Texture2D" uid="uid://dww7u83m237se" path="res://Assets/CardAssets/cardBackDisabled.png" id="4_gjfma"]
