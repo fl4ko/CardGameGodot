@@ -1,11 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cmh7ggwaxfr50"]
+[gd_scene load_steps=6 format=3 uid="uid://cmh7ggwaxfr50"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/game_screen.gd" id="1_jttc6"]
 [ext_resource type="Texture2D" uid="uid://c7yb71x7142ta" path="res://Assets/Database/GUI/Background/background.jpg" id="2_whpc3"]
-[ext_resource type="PackedScene" uid="uid://bhwquipv8xeik" path="res://Assets/Scenes/player.tscn" id="3_ahtew"]
 [ext_resource type="Texture2D" uid="uid://d2f1n8ue5vyhp" path="res://Assets/CardAssets/cardBack.jpg" id="3_qihbg"]
 [ext_resource type="Texture2D" uid="uid://dww7u83m237se" path="res://Assets/CardAssets/cardBackDisabled.png" id="4_gjfma"]
-[ext_resource type="PackedScene" uid="uid://dggjublltq4hc" path="res://Assets/Scenes/enemy.tscn" id="4_j1k3a"]
 [ext_resource type="Script" path="res://Assets/Scripts/hand_draw.gd" id="5_stire"]
 
 [node name="GameScreen" type="Node2D"]
@@ -22,8 +20,7 @@ texture = ExtResource("2_whpc3")
 
 [node name="Cards" type="Node" parent="Player"]
 
-[node name="Player" parent="Player" instance=ExtResource("3_ahtew")]
-position = Vector2(1005, 542)
+[node name="PlayerNode" type="Node" parent="Player"]
 
 [node name="Enemy" type="Node" parent="."]
 
@@ -31,8 +28,7 @@ position = Vector2(1005, 542)
 
 [node name="Cards" type="Node" parent="Enemy"]
 
-[node name="Enemy" parent="Enemy" instance=ExtResource("4_j1k3a")]
-position = Vector2(8, 72)
+[node name="EnemyNode" type="Node" parent="Enemy"]
 
 [node name="Deck" type="Node" parent="."]
 

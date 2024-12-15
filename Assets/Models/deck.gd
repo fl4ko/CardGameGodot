@@ -2,6 +2,7 @@ extends Node
 class_name Deck
 
 @onready var userDeckResource : userCardsResource
+var currentHand: Array
 var maxNrOfCards
 var currentNrOfCards
 
@@ -13,6 +14,12 @@ func _init():
 	for item in userDeckResource.CardsStats:
 		currentNrOfCards += userDeckResource.CardsStats[item][8]
 	maxNrOfCards = 20
+	for key in userDeckResource.CardsStats.keys():
+		var card = userDeckResource.CardsStats[key]
+		var amountInDeck = card[8]
+		if amountInDeck > 0:
+			for i in range(amountInDeck):
+				currentHand.append(key)
 
 func get_card_info(cardKey : String) -> Array:
 	return userDeckResource.CardsStats[cardKey]

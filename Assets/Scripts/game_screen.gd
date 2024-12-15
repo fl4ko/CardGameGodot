@@ -7,11 +7,13 @@ const slot_spacing_ratio: float = 0.2
 @export var rot_max: float = 10.0
 @export var anim_offset_y: float = 0.3
 
-@onready var player : Player
-@onready var enemy : Player
+@onready var game_table : GameTable
+
+@onready var playerScene = preload("res://Assets/Scenes/player.tscn")
+@onready var enemyScene = preload("res://Assets/Scenes/enemy.tscn")
+
 @onready var card_base = preload("res://Assets/Scenes/card_base.tscn")
 @onready var card_slot = preload("res://Assets/Scenes/card_slot.tscn")
-@onready var card_slot2 = preload("res://Assets/Scenes/card_slot.tscn")
 
 @onready var screen_size = Vector2(get_viewport().size)
 
@@ -20,6 +22,9 @@ var valid_cards_enemy: Array
 
 @onready var player_slots = $Player/CardSlots
 @onready var enemy_slots = $Enemy/CardSlots
+
+@onready var playerNode = $Player/PlayerNode
+@onready var enemyNode = $Enemy/EnemyNode
 
 @onready var player_cards = $Player/Cards
 @onready var enemy_cards = $Enemy/Cards
@@ -32,26 +37,11 @@ var sine_offset_mult: float = 0.0
 @onready var tweenEnemy: Tween
 
 func _ready() -> void:
-	player = Player.new()
-	enemy = Player.new()
+	game_table = GameTable.new()
 	rot_max = deg_to_rad(rot_max)
 	place_card_slots(true, 5)
 	place_card_slots(false, 5)
-	
-	if not player.userDeck.userDeckResource.CardsStats.size() <= 0:
-		for key in player.userDeck.userDeckResource.CardsStats.keys():
-			var card = player.userDeck.userDeckResource.CardsStats[key]
-			var amountInDeck = card[8]
-			if amountInDeck > 0:
-				for i in range(amountInDeck):
-					valid_cards_player.append(key)
-	if not enemy.userDeck.userDeckResource.CardsStats.size() <= 0:
-		for key in enemy.userDeck.userDeckResource.CardsStats.keys():
-			var card = enemy.userDeck.userDeckResource.CardsStats[key]
-			var amountInDeck = card[8]
-			if amountInDeck > 0:
-				for i in range(amountInDeck):
-					valid_cards_enemy.append(key)
+	place_players()
 
 func draw_card_player(amountToDraw: int, fromPos: Vector2):
 	if tweenPlayer and tweenPlayer.is_running():
@@ -59,7 +49,7 @@ func draw_card_player(amountToDraw: int, fromPos: Vector2):
 	tweenPlayer = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
 	
 	for i in range(amountToDraw):
-		var card = player.userDeck.userDeckResource.CardsStats[valid_cards_player[i]]
+		var card = game_table.player.userDeck.userDeckResource.CardsStats[valid_cards_player[i]]
 		if card.size() > 0:
 			var new_card_base = card_base.instantiate()
 			new_card_base.global_position = fromPos
@@ -84,7 +74,7 @@ func draw_card_enemy(amountToDraw: int, fromPos: Vector2):
 	tweenEnemy = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
 	
 	for i in range(amountToDraw):
-		var card = enemy.userDeck.userDeckResource.CardsStats[valid_cards_enemy[i]]
+		var card = game_table.enemy.userDeck.userDeckResource.CardsStats[valid_cards_enemy[i]]
 		if card.size() > 0:
 			var new_card_base = card_base.instantiate()
 			new_card_base.global_position = fromPos
@@ -106,6 +96,14 @@ func draw_card_enemy(amountToDraw: int, fromPos: Vector2):
 	tweenEnemy.tween_callback(set_process.bind(true))
 	tweenEnemy.tween_property(self, "sine_offset_mult", anim_offset_y, 1.5).from(0.0)
 
+func place_players() -> void:
+	var enemy_instance = enemyScene.instantiate()
+	enemy_instance.position = Vector2(10,116)
+	enemyNode.add_child(enemy_instance)
+	var player_instance = playerScene.instantiate()
+	player_instance.position = Vector2(1043,648)
+	playerNode.add_child(player_instance)
+
 func place_card_slots(is_player: bool, slots_amount) -> void:
 	var spacing = cardSize.x * slot_spacing_ratio
 	var total_width = (slots_amount * cardSize.x) + ((slots_amount - 1) * spacing)
@@ -114,7 +112,7 @@ func place_card_slots(is_player: bool, slots_amount) -> void:
 	for i in range(slots_amount):
 		
 		if is_player:
-			var new_card_slot = card_slot2.instantiate()
+			var new_card_slot = card_slot.instantiate()
 			new_card_slot.position = Vector2(start_x + i * (cardSize.x + spacing), 450)
 			player_slots.add_child(new_card_slot)
 		else:
