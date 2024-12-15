@@ -1,11 +1,10 @@
 extends TextureButton
 
 @onready var cardSize = $'../../'.cardSize
-@onready var userDeck : Deck = Deck.new()
+@onready var player : Player = Player.new()
+@onready var enemy : Player = Player.new()
 var cardKey
 var cardInfo
-var isFirstDraw = true;
-var totalAmountOfCards = 0
 
 func _ready() -> void:
 	scale *= cardSize/size
@@ -13,5 +12,6 @@ func _ready() -> void:
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 			if event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
-				$'../../'.draw_card(userDeck.currentNrOfCards, position, true)
-				$'../../'.draw_card(userDeck.currentNrOfCards, position, false)
+				$'../../'.draw_card_enemy(enemy.userDeck.currentNrOfCards, position)
+				$'../../'.draw_card_player(player.userDeck.currentNrOfCards, position)
+				self.hide()

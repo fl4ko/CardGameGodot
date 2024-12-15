@@ -9,3 +9,4 @@ func _on_gui_input(event: InputEvent) -> void:
 func handle_mouse_release(event: InputEvent) -> void:
 	if not event is InputEventMouseButton: return
 	if event.button_index != MOUSE_BUTTON_LEFT: return
+	
