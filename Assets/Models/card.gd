@@ -1,12 +1,11 @@
 extends HBoxContainer
-class_name Card
+class_name CardScene
 
 @export_category("Oscillator")
 @export var spring: float = 150.0
 @export var damp: float = 10.0
 @export var velocity_multiplier: float = 2.0
 
-@onready var cards: userCardsResource = preload("res://Assets/Database/CardDatabase.tres")
 @onready var game_screen: PackedScene = preload("res://Assets/Scenes/game_screen.tscn")
 
 @onready var border: TextureRect = $Image/Border
@@ -18,8 +17,6 @@ class_name Card
 #@onready var highlight: TextureRect = $Image/BorderHightlight
 
 @onready var card_slots = $'../../CardSlots'
-
-var cardName
 
 var tween_hover: Tween
 var tween_handle: Tween
@@ -45,50 +42,46 @@ var is_in_slot: bool = false
 var is_player: bool = true
 var is_hovered : bool = false
 var slot_index: int
+var deck_showcase: bool = false
+var inHandIndex: int
 # 0Name, 1Rarity, 2Type, 3Cost, 4HP, 5Attack, 6Image
 
 @onready var borderImage
 @onready var cardImage
 
-@export var Name: String
-@export var Health: int
-@export var Attack: int
-@export var Cost: int
-
+var card: Card
+var cardKey: String
 
 func _ready():
-	cardName = cardName.replace(" ","")
-	cardName = cardName.replace("-","")
-	var cardInfo = cards.CardsStats.get(cardName)
-	cardImage = cardInfo[6]
-	var cardType = cardInfo[2]
-	
-	print(cardImage)
-	print(cardInfo)
-	
-	# Setting border image and size
-	borderImage = Global.set_border_image(cardType)
-	border.texture = load(borderImage)
-	#border.scale *= size / border.texture.get_size()
-	
-	# Setting card image and size
-	image.texture = load(cardImage)
-	#image.scale *= size / image.texture.get_size()
-	
-	# Setting card name, attack, cost and hp
-	attack_label.text = str(cardInfo[5])
-	health_label.text = str(cardInfo[4])
-	name_label.text = str(cardInfo[0])
-	cost_label.text = str(cardInfo[3])
-	
 	original_scale = scale
 	original_z_index = z_index
+	if(card != null):
+		set_card_visuals()
 
 func _process(delta: float) -> void:
 	follow_mouse(delta)
 
+func add_card(cardToAdd: Card) -> void:
+	card = cardToAdd
+	set_card_visuals()
+
+func set_card_visuals() -> void:
+	borderImage = Global.set_border_image(card.cardInfo[2])
+	border.texture = load(borderImage)
+	#border.scale *= size / border.texture.get_size()
+	
+	# Setting card image and size
+	image.texture = load(card.cardInfo[6])
+	#image.scale *= size / image.texture.get_size()
+	
+	# Setting card name, attack, cost and hp
+	attack_label.text = str(card.Attack)
+	health_label.text = str(card.Health)
+	name_label.text = card.Name
+	cost_label.text = str(card.Cost)
+
 func _on_mouse_entered() -> void:
-	if is_player:
+	if is_player and not deck_showcase:
 		if tween_hover and tween_hover.is_running():
 			tween_hover.kill()
 		tween_hover = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
@@ -96,7 +89,7 @@ func _on_mouse_entered() -> void:
 		z_index = 21
 
 func _on_mouse_exited() -> void:
-	if is_player and not is_hovered:
+	if is_player and not is_hovered and not deck_showcase:
 		if tween_hover and tween_hover.is_running():
 			tween_hover.kill()
 		tween_hover = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
@@ -104,6 +97,7 @@ func _on_mouse_exited() -> void:
 		z_index = original_z_index
 
 func follow_mouse(_delta: float) -> void:
+	if deck_showcase: return
 	if not following_mouse: return
 	
 	if tween_staright_pickup and tween_staright_pickup.is_running():
@@ -167,14 +161,18 @@ func pick_enemy_card_to_attack(event: InputEvent) -> void:
 	if not event is InputEventMouseButton: return
 	if event.button_index != MOUSE_BUTTON_LEFT: return
 	
-	if event.is_pressed() and is_in_slot:
+	if event.is_pressed() and is_in_slot and card.Health > 0:
 		_on_mouse_entered_enemy_sim()
-		Health -= $'../../..'.currentCard.Attack
-		health_label.text = str(Health)
-		$OnKillTimer.start()
+		card.Health -= $'../../..'.currentCard.card.Attack
+		health_label.text = str(card.Health)
+		print($'../../..'.game_table.enemy.userDeck.currentHand[0])
+		if(card.Health <= 0):
+			$OnKillTimer.start()
 
 func _on_gui_input(event: InputEvent) -> void:
-	if is_player:
+	if deck_showcase:
+		return
+	elif is_player:
 		handle_mouse_click(event)
 	elif not is_player and $'../../..'.currentCard != null:
 		pick_enemy_card_to_attack(event)
@@ -182,6 +180,10 @@ func _on_gui_input(event: InputEvent) -> void:
 func on_kill_timer() -> void:
 	var slot = card_slots.get_child(slot_index,true)
 	slot.is_empty = true
+	$'../../..'.game_table.enemy.userDeck.currentHand.remove_at(inHandIndex)
+	$'../../..'.update_indexes(inHandIndex)
+	$'../../..'.check_win_conditions()
+	$'../../..'.enemy_cards.remove_child(self)
 	queue_free()
 
 func tween_hover_kill() -> void:
@@ -204,7 +206,7 @@ func _on_mouse_entered_enemy_sim() -> void:
 func enemy_move_card(slot_index_enemy: int) -> void: 
 	_on_mouse_entered_enemy_sim()
 	
-	image.texture = load(cardImage)
+	image.texture = load(card.cardInfo[6])
 	border.show()
 	name_label.show()
 	attack_label.show()

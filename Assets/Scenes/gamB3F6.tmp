@@ -1,0 +1,68 @@
+[gd_scene load_steps=6 format=3 uid="uid://cmh7ggwaxfr50"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/game_screen.gd" id="1_jttc6"]
+[ext_resource type="Texture2D" uid="uid://c7yb71x7142ta" path="res://Assets/Database/GUI/Background/background.jpg" id="2_whpc3"]
+[ext_resource type="Texture2D" uid="uid://d2f1n8ue5vyhp" path="res://Assets/CardAssets/cardBack.jpg" id="3_qihbg"]
+[ext_resource type="Texture2D" uid="uid://dww7u83m237se" path="res://Assets/CardAssets/cardBackDisabled.png" id="4_gjfma"]
+[ext_resource type="Script" path="res://Assets/Scripts/hand_draw.gd" id="5_stire"]
+
+[node name="GameScreen" type="Node2D"]
+script = ExtResource("1_jttc6")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(576, 432)
+scale = Vector2(0.4479, 0.6)
+texture = ExtResource("2_whpc3")
+
+[node name="Player" type="Node" parent="."]
+
+[node name="CardSlots" type="Node" parent="Player"]
+
+[node name="Cards" type="Node" parent="Player"]
+
+[node name="PlayerNode" type="Node" parent="Player"]
+
+[node name="Enemy" type="Node" parent="."]
+
+[node name="CardSlots" type="Node" parent="Enemy"]
+
+[node name="Cards" type="Node" parent="Enemy"]
+
+[node name="EnemyNode" type="Node" parent="Enemy"]
+
+[node name="Deck" type="Node" parent="."]
+
+[node name="HandDraw" type="TextureButton" parent="Deck"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 993.0
+offset_top = 321.0
+offset_right = 441.0
+offset_bottom = 508.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("3_qihbg")
+texture_pressed = ExtResource("3_qihbg")
+texture_hover = ExtResource("3_qihbg")
+texture_disabled = ExtResource("4_gjfma")
+stretch_mode = 0
+script = ExtResource("5_stire")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1000.0
+offset_bottom = 50.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Add enemy card"
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="add_enemy_card_test"]

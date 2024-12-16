@@ -37,7 +37,6 @@ func get_pack_rarity_color(rarity: String) -> Color:
 	elif(rarity == "Mythical"):
 		return Color.RED
 	return Color.WHITE
-	
 
 func hide_highlight(cards) -> void:
 	for item in cards:

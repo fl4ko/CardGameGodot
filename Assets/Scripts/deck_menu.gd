@@ -5,7 +5,7 @@ extends MarginContainer
 @onready var userCardMax: Label = $VBoxContainer2/HBoxContainer/GridContainer/HBoxContainer/UserCardMax
 @onready var userCardDeck: Label = $VBoxContainer2/HBoxContainer/GridContainer/HBoxContainer/UserCardDeck
 @onready var cardNamesList : ItemList = $VBoxContainer2/HBoxContainer/ScrollContainer/CardNamesList
-@onready var cardBase: Card = $VBoxContainer2/HBoxContainer/CardBase
+@onready var cardBase: CardScene = $VBoxContainer2/HBoxContainer/CardBase
 @onready var add : Button = $VBoxContainer2/HBoxContainer/GridContainer/HBoxContainer2/Add
 @onready var remove : Button = $VBoxContainer2/HBoxContainer/GridContainer/HBoxContainer2/Remove
 @onready var userCardDeckTimer : Timer = $VBoxContainer2/HBoxContainer/GridContainer/HBoxContainer/UserCardDeckTimer
@@ -31,20 +31,18 @@ func cardChosen(index: int) -> void:
 	cardKey = cardNamesList.get_item_text(index) as String
 	cardKey = cardKey.replace(" ","")
 	cardKey = cardKey.replace("-","")
-	cardInfo = userDeck.get_card_info(cardKey)
-	cardBase.cardName = cardInfo[0]
-	cardBase.image.texture = load(cardInfo[6])
-	var borderImage = Global.set_border_image(cardInfo[2])
-	cardBase.border.texture = load(borderImage)
+	cardInfo = userDeck.userDeckResource.CardsStats[cardKey]
+	cardBase.add_card(Card.new(cardInfo))
+	cardBase.deck_showcase = true
 	cardBase.image.show()
 	add.show()
 	remove.show()
 	userCardMax.show()
 	userCardDeck.show()
-	cardBase.attack_label.text = str(cardInfo[5])
-	cardBase.cost_label.text = str(cardInfo[3])
-	cardBase.health_label.text = str(cardInfo[4])
-	cardBase.name_label.text = cardInfo[0]
+	cardBase.attack_label.text = str(cardBase.card.Attack)
+	cardBase.cost_label.text = str(cardBase.card.Cost)
+	cardBase.health_label.text = str(cardBase.card.Health)
+	cardBase.name_label.text = cardBase.card.Name
 	userCardMax.text = "Avaliable Cards: " + str(cardInfo[7])
 	userCardDeck.text = "In Deck: " + str(cardInfo[8])
 	
