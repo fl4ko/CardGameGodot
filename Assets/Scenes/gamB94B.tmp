@@ -8,6 +8,9 @@
 
 [node name="GameScreen" type="Node2D"]
 script = ExtResource("1_jttc6")
+card_offset_x = null
+rot_max = null
+anim_offset_y = null
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(576, 432)
@@ -49,6 +52,22 @@ texture_disabled = ExtResource("4_gjfma")
 stretch_mode = 0
 script = ExtResource("5_stire")
 
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1000.0
+offset_bottom = 50.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Add enemy card"
+
 [node name="TurnButton" type="Button" parent="."]
 offset_left = 50.0
 offset_top = 720.0
@@ -57,4 +76,5 @@ offset_bottom = 770.0
 theme_override_font_sizes/font_size = 26
 text = "End Turn"
 
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="add_enemy_card_test"]
 [connection signal="pressed" from="TurnButton" to="." method="end_turn"]

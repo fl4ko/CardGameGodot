@@ -20,6 +20,7 @@ func _ready() -> void:
 	for key in userDeck.userDeckResource.CardsStats.keys():
 		cardInfo = userDeck.userDeckResource.CardsStats[key]
 		cardNamesList.add_item(cardInfo[0])
+	cardBase.deck_showcase = true
 	cardBase.image.hide()
 	cardBase.is_player = false
 	add.hide()

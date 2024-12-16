@@ -173,6 +173,8 @@ wait_time = 0.5
 [node name="OnKillTimer" type="Timer" parent="."]
 wait_time = 2.0
 
+[node name="OnKillTimerByEnemy" type="Timer" parent="."]
+
 [connection signal="focus_exited" from="." to="." method="_on_focus_exited"]
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
@@ -180,3 +182,4 @@ wait_time = 2.0
 [connection signal="timeout" from="EnemyHoverTimer" to="." method="_on_mouse_exited_enemy_sim"]
 [connection signal="timeout" from="TweenHoverKill" to="." method="tween_hover_kill"]
 [connection signal="timeout" from="OnKillTimer" to="." method="on_kill_timer"]
+[connection signal="timeout" from="OnKillTimerByEnemy" to="." method="enemy_on_kill_timer"]

@@ -4,6 +4,8 @@ class_name Deck
 @onready var userDeckResource : userCardsResource
 
 var currentHand: Array
+var currentSlot: Array
+var cardsInSlot
 var maxNrOfCards
 var currentNrOfCards
 
@@ -15,12 +17,26 @@ func _init():
 	for item in userDeckResource.CardsStats:
 		currentNrOfCards += userDeckResource.CardsStats[item][8]
 	maxNrOfCards = 20
+	var cardIndex = 0
 	for key in userDeckResource.CardsStats.keys():
-		var card = userDeckResource.CardsStats[key]
-		var amountInDeck = card[8]
+		var cardStats = userDeckResource.CardsStats[key]
+		var amountInDeck = cardStats[8]
 		if amountInDeck > 0:
 			for i in range(amountInDeck):
-				currentHand.append(userDeckResource.CardsStats[key])
+				var card = Card.new(cardStats)
+				card.inHandIndex = cardIndex
+				cardIndex += 1
+				currentHand.append(card)
+	currentSlot.resize(5)
+	cardsInSlot = 0
+
+func is_null() -> bool:
+	var empty = true
+	for cardSlot in currentSlot:
+		if cardSlot != null:
+			empty = false
+			break
+	return empty
 
 func get_card_info(cardKey : String) -> Array:
 	return userDeckResource.CardsStats[cardKey]
