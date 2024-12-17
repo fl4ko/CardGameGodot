@@ -22,6 +22,8 @@ var tween_hover: Tween
 var tween_handle: Tween
 var tween_glide_back: Tween
 var tween_staright_pickup: Tween
+var tween_attack: Tween
+var tween_destroy: Tween
 
 var original_z_index
 var original_rotation
@@ -171,7 +173,7 @@ func pick_card_to_attack(event: InputEvent) -> void:
 	if event.button_index != MOUSE_BUTTON_LEFT: return
 	
 	if event.is_pressed() and is_in_slot and card.Health >= 0 and not check_if_bait_enemy():
-		_on_mouse_entered_enemy_sim()
+		game_table_scene.currentCard.attack_card_animation(position)
 		card.Health -= game_table_scene.currentCard.card.Attack
 		health_label.text = str(card.Health)
 		game_table_scene.currentCard.card.can_do_action = false
@@ -182,7 +184,7 @@ func pick_card_to_attack(event: InputEvent) -> void:
 			$OnKillTimer.start()
 	elif event.is_pressed() and is_in_slot and card.Health >= 0 and check_if_bait_enemy():
 		if(card.cardInfo[2]) == "Bait":
-			_on_mouse_entered_enemy_sim()
+			game_table_scene.currentCard.attack_card_animation(position)
 			card.Health -= game_table_scene.currentCard.card.Attack
 			health_label.text = str(card.Health)
 			game_table_scene.currentCard.card.can_do_action = false
@@ -191,6 +193,7 @@ func pick_card_to_attack(event: InputEvent) -> void:
 			game_table_scene.currentCard = null
 			if(card.Health <= 0):
 				$OnKillTimer.start()
+	#elif event.is_pressed() and is_in_slot and card.Health >= 0 and check_if_bait_enemy()
 
 func check_if_bait_enemy() -> bool:
 	for card in game_table_scene.game_table.enemy.userDeck.currentSlot:
@@ -290,7 +293,7 @@ func enemy_card_attack() -> void:
 			if(cardToAttack == null):
 				continue
 			if(cardToAttack.card.Health <= card.Attack):
-				cardToAttack._on_mouse_entered_enemy_sim()
+				attack_card_animation(cardToAttack.position)
 				cardToAttack.card.Health -= card.Attack
 				cardToAttack.health_label.text = str(cardToAttack.card.Health)
 				card.can_do_action = false
@@ -306,7 +309,7 @@ func enemy_card_attack() -> void:
 				highestATKCard = cardToAttack
 		if highestATKCard == null:
 			return
-		highestATKCard._on_mouse_entered_enemy_sim()
+		attack_card_animation(highestATKCard.position)
 		highestATKCard.card.Health -= card.Attack
 		highestATKCard.health_label.text = str(highestATKCard.card.Health)
 		card.can_do_action = false
@@ -316,7 +319,7 @@ func enemy_card_attack() -> void:
 		return
 	elif(bait_index != -1):
 		var cardToAttack = game_table_scene.game_table.player.userDeck.currentSlot[bait_index]
-		cardToAttack._on_mouse_entered_enemy_sim()
+		attack_card_animation(cardToAttack.position)
 		cardToAttack.card.Health -= card.Attack
 		cardToAttack.health_label.text = str(cardToAttack.card.Health)
 		card.can_do_action = false
@@ -324,3 +327,16 @@ func enemy_card_attack() -> void:
 			cardToAttack.kill_timer.start()
 		_on_mouse_exited_enemy_sim()
 		return
+
+func attack_card_animation(to_pos: Vector2) -> void:
+	if tween_attack and tween_attack.is_running():
+		tween_attack.kill()
+	tween_attack = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
+	var original_pos = position
+	var original_index = z_index
+	z_index = 100
+	tween_attack.tween_property(self, "position", to_pos - Vector2(0, 50), 0.375)
+	tween_attack.tween_property(self, "position", original_pos, 0.375)
+	z_index = original_index
+
+	

@@ -123,7 +123,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 bbcode_enabled = true
-text = "[center][font_size=33]Card Game[/font_size][/center]"
+text = "[center][font_size=33][wave amp=50.0 freq=5.0 connected=1]Card Game[/wave][/font_size][/center]"
 fit_content = true
 
 [node name="Sky" type="Sprite2D" parent="."]

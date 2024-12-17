@@ -1,10 +1,17 @@
-[gd_scene load_steps=10 format=3 uid="uid://bbi3fcfafn7y2"]
+[gd_scene load_steps=13 format=3 uid="uid://bbi3fcfafn7y2"]
 
+[ext_resource type="Shader" path="res://Assets/Shaders/disolve.gdshader" id="1_5xieg"]
 [ext_resource type="Script" path="res://Assets/Models/card.gd" id="1_50iv2"]
+[ext_resource type="Texture2D" uid="uid://c4k885wido0kw" path="res://Assets/CardAssets/dissolveimage.png" id="2_i2vcm"]
 [ext_resource type="Texture2D" uid="uid://croabbfqga8i0" path="res://Assets/CardAssets/Other/NameBackground.png" id="3_m6v2g"]
 [ext_resource type="Texture2D" uid="uid://deu2r0b280et7" path="res://Assets/CardAssets/Other/AttackBackground.png" id="4_tic4m"]
 [ext_resource type="Texture2D" uid="uid://du40f6n0ap3gg" path="res://Assets/CardAssets/Other/CostBackground.png" id="5_hjwh3"]
 [ext_resource type="Texture2D" uid="uid://6lr5iavx650g" path="res://Assets/CardAssets/Other/HealthBackground.png" id="6_bdrre"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sv4ch"]
+shader = ExtResource("1_5xieg")
+shader_parameter/dissolve_value = 1.0
+shader_parameter/dissolve_texture = ExtResource("2_i2vcm")
 
 [sub_resource type="LabelSettings" id="LabelSettings_16nlq"]
 font_size = 30
@@ -27,6 +34,7 @@ shadow_size = 5
 shadow_color = Color(0, 0, 0, 1)
 
 [node name="CardBase" type="HBoxContainer"]
+material = SubResource("ShaderMaterial_sv4ch")
 custom_minimum_size = Vector2(300, 450)
 offset_right = 300.0
 offset_bottom = 450.0

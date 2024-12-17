@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://cmh7ggwaxfr50"]
+[gd_scene load_steps=7 format=3 uid="uid://cmh7ggwaxfr50"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/game_screen.gd" id="1_jttc6"]
 [ext_resource type="Texture2D" uid="uid://c7yb71x7142ta" path="res://Assets/Database/GUI/Background/background.jpg" id="2_whpc3"]
 [ext_resource type="Texture2D" uid="uid://d2f1n8ue5vyhp" path="res://Assets/CardAssets/cardBack.jpg" id="3_qihbg"]
 [ext_resource type="Texture2D" uid="uid://dww7u83m237se" path="res://Assets/CardAssets/cardBackDisabled.png" id="4_gjfma"]
 [ext_resource type="Script" path="res://Assets/Scripts/hand_draw.gd" id="5_stire"]
+[ext_resource type="PackedScene" uid="uid://b3giiijvjgo0h" path="res://Assets/Scenes/game_result.tscn" id="6_dg1xk"]
 
 [node name="GameScreen" type="Node2D"]
 script = ExtResource("1_jttc6")
@@ -57,4 +58,21 @@ offset_bottom = 770.0
 theme_override_font_sizes/font_size = 26
 text = "End Turn"
 
+[node name="GameResult" parent="." instance=ExtResource("6_dg1xk")]
+z_index = 100
+offset_left = 376.0
+offset_top = 160.0
+offset_right = 776.0
+offset_bottom = 310.0
+
+[node name="Button" type="Button" parent="."]
+visible = false
+offset_left = 924.0
+offset_top = 240.0
+offset_right = 1045.0
+offset_bottom = 299.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
 [connection signal="pressed" from="TurnButton" to="." method="end_turn"]
+[connection signal="pressed" from="Button" to="." method="show_win_debug"]

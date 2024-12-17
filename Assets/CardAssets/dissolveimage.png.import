@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://brtjjdnfxch6x"
-path="res://.godot/imported/banner_hanging.png-b81939ccbf6b9d791a0a4bdb70fbe400.ctex"
+uid="uid://c4k885wido0kw"
+path="res://.godot/imported/dissolveimage.png-56888d496e7d9a1c55f26a531e35e9ab.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/CardAssets/banner_hanging.png"
-dest_files=["res://.godot/imported/banner_hanging.png-b81939ccbf6b9d791a0a4bdb70fbe400.ctex"]
+source_file="res://Assets/CardAssets/dissolveimage.png"
+dest_files=["res://.godot/imported/dissolveimage.png-56888d496e7d9a1c55f26a531e35e9ab.ctex"]
 
 [params]
 

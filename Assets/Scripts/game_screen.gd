@@ -11,15 +11,16 @@ const slot_spacing_ratio: float = 0.2
 
 @onready var playerScene = preload("res://Assets/Scenes/player.tscn")
 @onready var enemyScene = preload("res://Assets/Scenes/enemy.tscn")
-
 @onready var card_base = preload("res://Assets/Scenes/card_base.tscn")
 @onready var card_slot = preload("res://Assets/Scenes/card_slot.tscn")
+@onready var game_result: MarginContainer = $GameResult
 
 @onready var screen_size = Vector2(get_viewport().size)
 
 var valid_cards_player: Array
 var valid_cards_enemy: Array
 
+@onready var background: Sprite2D = $Background
 @onready var player_slots = $Player/CardSlots
 @onready var enemy_slots = $Enemy/CardSlots
 
@@ -31,6 +32,7 @@ var valid_cards_enemy: Array
 
 @onready var currentCard : CardScene
 var player_turn: bool
+var is_game_started: bool = false
 
 var sine_offset_mult: float = 0.0
 @onready var tweenPlayer: Tween
@@ -43,6 +45,9 @@ func _ready() -> void:
 	place_card_slots(false, 5)
 	place_players()
 	player_turn = true
+	$TurnButton.hide()
+	game_result.hide()
+	#game_result.position = background.position
 
 func end_turn() -> void:
 	player_turn = false
@@ -92,6 +97,7 @@ func draw_card_player(amountToDraw: int, fromPos: Vector2):
 		tweenPlayer.parallel().tween_property(new_card_base, "rotation", rot_radians, 0.3 + (i * 0.075))
 	tweenPlayer.tween_callback(set_process.bind(true))
 	tweenPlayer.tween_property(self, "sine_offset_mult", anim_offset_y, 1.5).from(0.0)
+	$TurnButton.show()
 
 func draw_card_enemy(amountToDraw: int, fromPos: Vector2):
 	if tweenEnemy and tweenEnemy.is_running():
@@ -157,14 +163,22 @@ func update_indexes_player(index: int) -> void:
 
 func check_win_conditions() -> void:
 	if(game_table.enemy.current_health <= 0):
-		get_tree().change_scene_to_file("res://Assets/Scenes/main_menu.tscn")
+		game_result.game_won = true
+		game_result.display_game_result()
+		game_result.show()
 	elif (game_table.enemy.userDeck.currentHand.size() <= 0 and game_table.enemy.userDeck.is_null()):
-		get_tree().change_scene_to_file("res://Assets/Scenes/main_menu.tscn")
+		game_result.game_won = true
+		game_result.display_game_result()
+		game_result.show()
 	if(game_table.player.current_health <= 0):
-		get_tree().change_scene_to_file("res://Assets/Scenes/main_menu.tscn")
+		game_result.game_won = false
+		game_result.display_game_result()
+		game_result.show()
 	elif(game_table.player.userDeck.currentHand.size() <= 0 and game_table.player.userDeck.is_null()):
-		get_tree().change_scene_to_file("res://Assets/Scenes/main_menu.tscn")
-
+		game_result.game_won = false
+		game_result.display_game_result()
+		game_result.show()
+		
 func enemy_add_card_to_table(arrayOfCards) -> void:
 	var foundCard = false
 	for card in arrayOfCards[0]:
@@ -212,22 +226,8 @@ func enemy_attack() -> void:
 				return
 			await get_tree().create_timer(2).timeout
 
-"""
-func select_random_card() -> Array:
-	# TO MA BYC COS INNEGO
-	if current_cards.size() <= 0:
-		return []
+func show_win_debug():
+	game_result.game_won = false
+	game_result.display_game_result()
+	game_result.show()
 	
-	var validCards = []
-	for key in current_cards.keys():
-		var card = current_cards[key]
-		var amountInDeck = card[8]
-		if amountInDeck > 0:
-			validCards.append(key)
-	
-	if validCards.size() <= 0:
-		return []
-		
-	randomize()
-	return current_cards[validCards[randi() % validCards.size()]]
-"""
